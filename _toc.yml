@@ -8,5 +8,5 @@ parts:
   - caption: FEM Class Activities
     numbered: True
     chapters:
-      - file: A_Lagrange.ipynb
-      - file: B_ProjectionBAE.ipynb
+      - file: Lagrange.ipynb
+      - file: ProjectionBAE.ipynb
