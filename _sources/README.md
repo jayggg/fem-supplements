@@ -1,11 +1,10 @@
 # Finite Elements: Hands-on Class Activities
 
 
-Notebooks 
-can be found here:
+Notebooks can be found here:
 
 
-https://jayggg.github.io/curvature2025/
+https://jayggg.github.io/fem-supplements/
 
 
 Author: Jay Gopalakrishnan 
