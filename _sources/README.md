@@ -1,4 +1,4 @@
-# Finite Elements: Hands-on Class Activities
+# Hands-on Class Activities on Finite Elements
 
 
 This is a collection of notebooks prepared for hands-on class
