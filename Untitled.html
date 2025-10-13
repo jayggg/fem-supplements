@@ -1,0 +1,488 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Mesh and piecewise polynomials &#8212; Class activities on finite elements</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"649d6762355e43df83d068766d166be2": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": "50vh", "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "100%"}}, "7736e2a0f15c467ead713056a6199530": {"model_name": "WebguiModel", "model_module": "webgui_jupyter_widgets", "model_module_version": "0.2.37", "state": {"_dom_classes": [], "_model_module": "webgui_jupyter_widgets", "_model_module_version": "0.2.37", "_model_name": "WebguiModel", "_view_count": null, "_view_module": "webgui_jupyter_widgets", "_view_module_version": "0.2.37", "_view_name": "WebguiView", "layout": "IPY_MODEL_649d6762355e43df83d068766d166be2", "tabbable": null, "tooltip": null, "value": {"ngsolve_version": "Netgen x.x", "mesh_dim": 3, "mesh_center": [0.4999999999999999, 1.2071067811865477, 0.0], "mesh_radius": 1.707106781186548, "order2d": 1, "order3d": 0, "draw_vol": false, "draw_surf": true, "funcdim": 0, "have_normals": true, "show_wireframe": true, "show_mesh": true, "Bezier_points": [], "Bezier_trig_points": ["AAAAAJqZmT4AAAAAAAAAAAAAgCVmZuY+AAAAAAAAAAAAAIA/mpmZPgAAAAAAAAAAAACAP5qZmT4AAAAAAAAAAAAAAAAAAMA/AAAAAAAAAAAAAAAAAADAPwAAAAAAAAAAAACgJZqZ2T8AAAAAAAAAAJqZmT4AAMA/AAAAAAAAAACamRk/AADAPwAAAAAAAAAAmpkZPwAAwD8AAAAAAAAAAJqZGT+amdk/AAAAAAAAAACamRk/mpnZPwAAAAAAAAAAZmZmPwAAwD8AAAAAAAAAAHqC2j/zBDU/AAAAAAAAAAB6gto/8wQ1PwAAAAAAAAAAeoLaP/MENT8AAAAAAAAAAAAAACZ6ghpAAAAAAAAAAAAAAAAmeoIaQAAAAAAAAAAAAAAAJnqCGkAAAAAAAAAAAAAAgD96ghpAAAAAAAAAAAAAAIA/eoIaQAAAAAAAAAAAeoLaP3qC2j8AAAAAAAAAAHqC2j96gto/AAAAAAAAAAB6gto/eoLaPwAAAAAAAAAA", "8wQ1v/MENT8AAAAAAAAAAPMENb/zBDU/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJqZmT4AAAAAAAAAAPMENb96gto/AAAAAAAAAADzBDW/8wQ1PwAAAAAAAAAA8wQ1v3qC2j8AAAAAAAAAAAAAAAAAAMA/AAAAAAAAAAAAAIAlZmbmPgAAAAAAAAAAmpmZPgAAwD8AAAAAAAAAAJqZmT6amdk/AAAAAAAAAACamZk+AADAPwAAAAAAAAAAmpkZPwAAwD8AAAAAAAAAAAAAgD9mZuY+AAAAAAAAAAAAAIA/mpmZPgAAAAAAAAAAZmZmPwAAwD8AAAAAAAAAAAAAoCWamdk/AAAAAAAAAADzBDW/eoLaPwAAAAAAAAAAmpmZPpqZ2T8AAAAAAAAAAJqZGT+amdk/AAAAAAAAAAAAAAAmeoIaQAAAAAAAAAAAZmZmP5qZ2T8AAAAAAAAAAGZmZj8AAMA/AAAAAAAAAAAAAIA/eoIaQAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAAAAAAACamZk+AAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPMENb/zBDU/AAAAAAAAAAAAAIAlZmbmPgAAAAAAAAAAAAAAAAAAwD8AAAAAAAAAAAAAgCVmZuY+AAAAAAAAAAAAAIA/ZmbmPgAAAAAAAAAAAACAJWZm5j4AAAAAAAAAAJqZmT4AAMA/AAAAAAAAAACamRk/AADAPwAAAAAAAAAAAACAP2Zm5j4AAAAAAAAAAAAAgD+amZk+AAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAACAP2Zm5j4AAAAAAAAAAJqZmT6amdk/AAAAAAAAAAAAAKAlmpnZPwAAAAAAAAAAmpkZP5qZ2T8AAAAAAAAAAGZmZj+amdk/AAAAAAAAAACamRk/mpnZPwAAAAAAAAAAZmZmPwAAwD8AAAAAAAAAAHqC2j/zBDU/AAAAAAAAAABmZmY/mpnZPwAAAAAAAAAA", "AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/", "AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/", "AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/"], "funcmin": 0, "funcmax": 1, "mesh_regions_2d": 20, "autoscale": true, "colors": [[0.0, 1.0, 0.0, 1.0]], "names": ["default"], "solid_names": [], "edges": ["AAAAAAAAAAAAAAAAAAAAAPMENb/zBDU/AAAAAAAAgD8AAIA/AAAAAAAAAAAAAABA8wQ1v3qC2j8AAAAAAABAQHqC2j/zBDU/AAAAAAAAgEAAAAAmeoIaQAAAAAAAAKBAeoLaP3qC2j8AAAAAAADAQAAAgD96ghpAAAAAAAAA4EAAAAAAmpmZPgAAAAAAAABBAACAP5qZmT4AAAAAAAAQQQAAgD9mZuY+AAAAAAAAIEEAAIAlZmbmPgAAAAAAADBBAAAAAAAAwD8AAAAAAABAQQAAoCWamdk/AAAAAAAAUEGamZk+AADAPwAAAAAAAGBBmpmZPpqZ2T8AAAAAAABwQZqZGT8AAMA/AAAAAAAAgEGamRk/mpnZPwAAAAAAAIhBZmZmPwAAwD8AAAAAAACQQWZmZj+amdk/AAAAAAAAmEE=", "AACAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD96gto/8wQ1PwAAAAAAAABA8wQ1v/MENT8AAAAAAABAQHqC2j96gto/AAAAAAAAgEDzBDW/eoLaPwAAAAAAAKBAAACAP3qCGkAAAAAAAADAQAAAACZ6ghpAAAAAAAAA4EAAAIA/mpmZPgAAAAAAAABBAACAP2Zm5j4AAAAAAAAQQQAAgCVmZuY+AAAAAAAAIEEAAAAAmpmZPgAAAAAAADBBmpmZPgAAwD8AAAAAAABAQQAAAAAAAMA/AAAAAAAAUEGamZk+mpnZPwAAAAAAAGBBAACgJZqZ2T8AAAAAAABwQWZmZj8AAMA/AAAAAAAAgEGamRk/AADAPwAAAAAAAIhBZmZmP5qZ2T8AAAAAAACQQZqZGT+amdk/AAAAAAAAmEE="], "edge_names": ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""], "edge_colors": [[0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0]], "solid_face_map": [], "fullscreen": false, "gui_settings": {}, "objects": []}}}, "d763efd11f5d459b89d301e07a0c90b2": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": "50vh", "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "100%"}}, "ea031dc066334df7a7f0abd2a869faf6": {"model_name": "WebguiModel", "model_module": "webgui_jupyter_widgets", "model_module_version": "0.2.37", "state": {"_dom_classes": [], "_model_module": "webgui_jupyter_widgets", "_model_module_version": "0.2.37", "_model_name": "WebguiModel", "_view_count": null, "_view_module": "webgui_jupyter_widgets", "_view_module_version": "0.2.37", "_view_name": "WebguiView", "layout": "IPY_MODEL_d763efd11f5d459b89d301e07a0c90b2", "tabbable": null, "tooltip": null, "value": {"ngsolve_version": "Netgen x.x", "mesh_dim": 3, "mesh_center": [0.4999999999999999, 0.8660254037844389, 0.0], "mesh_radius": 1.3228756555322954, "order2d": 1, "order3d": 0, "draw_vol": false, "draw_surf": true, "funcdim": 0, "have_normals": true, "show_wireframe": true, "show_mesh": true, "Bezier_points": [], "Bezier_trig_points": ["AACAP9ez3T8AAAAAAAAAAAAAgD/Xs90/AAAAAAAAAAAAAIA/17PdPwAAAAAAAAAAAACAP9ez3T8AAAAAAAAAAA==", "AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAAAAAAIAl17PdPwAAAAAAAAAAAAAAv9ezXT8AAAAAAAAAAA==", "AACAPwAAAAAAAAAAAAAAAAAAwD/Xs10/AAAAAAAAAAAAAAC/17NdPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==", "AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/", "AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/", "AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/"], "funcmin": 0, "funcmax": 1, "mesh_regions_2d": 6, "autoscale": true, "colors": [[0.0, 1.0, 0.0, 1.0]], "names": ["default"], "solid_names": [], "edges": ["AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAMA/17NdPwAAAAAAAABAAACAP9ez3T8AAAAAAABAQAAAgCXXs90/AAAAAAAAgEAAAAC/17NdPwAAAAAAAKBA", "AACAPwAAAAAAAAAAAAAAAAAAwD/Xs10/AAAAAAAAgD8AAIA/17PdPwAAAAAAAABAAACAJdez3T8AAAAAAABAQAAAAL/Xs10/AAAAAAAAgEAAAAAAAAAAAAAAAAAAAKBA"], "edge_names": ["", "", "", "", "", ""], "edge_colors": [[0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0]], "solid_face_map": [], "fullscreen": false, "gui_settings": {}, "objects": []}}}}, "version_major": 2, "version_minor": 0}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Untitled';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/NGSPDX.png" class="logo__image only-light" alt="Class activities on finite elements - Home"/>
+    <script>document.write(`<img src="_static/NGSPDX.png" class="logo__image only-dark" alt="Class activities on finite elements - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    Hands-on Class Activities on Finite Elements
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="OneDim.html">1. Lagrange space on one-dimensional domains</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/jayggg/fem-supplements" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Untitled.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Mesh and piecewise polynomials</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="mesh-and-piecewise-polynomials">
+<h1>Mesh and piecewise polynomials<a class="headerlink" href="#mesh-and-piecewise-polynomials" title="Link to this heading">#</a></h1>
+<p>A simple space which one can use to approximate functions on complicated domains is the space of piecewise polynomials with respect to a triangulation of the domain.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ngsolve</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ng</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">netgen.occ</span><span class="w"> </span><span class="kn">import</span> <span class="n">WorkPlane</span><span class="p">,</span> <span class="n">Compound</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ngsolve.webgui</span><span class="w"> </span><span class="kn">import</span> <span class="n">Draw</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wp</span> <span class="o">=</span> <span class="n">WorkPlane</span><span class="p">()</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">wp</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">Rotate</span><span class="p">(</span><span class="mi">360</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
+<span class="n">face</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">Face</span><span class="p">()</span>
+<span class="n">wp</span><span class="o">.</span><span class="n">MoveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">eye1</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span><span class="o">.</span><span class="n">Face</span><span class="p">()</span>
+<span class="n">wp</span><span class="o">.</span><span class="n">MoveTo</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">eye2</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span><span class="o">.</span><span class="n">Face</span><span class="p">()</span>
+<span class="n">wp</span><span class="o">.</span><span class="n">MoveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="n">smile</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span><span class="o">.</span><span class="n">Face</span><span class="p">()</span>
+
+<span class="n">domain</span> <span class="o">=</span> <span class="n">face</span> <span class="o">-</span> <span class="n">eye1</span> <span class="o">-</span> <span class="n">eye2</span> <span class="o">-</span> <span class="n">smile</span>
+<span class="n">Draw</span><span class="p">(</span><span class="n">domain</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "7736e2a0f15c467ead713056a6199530"}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wp</span> <span class="o">=</span> <span class="n">WorkPlane</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+    <span class="n">wp</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">Rotate</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">face</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">Face</span><span class="p">()</span>
+<span class="n">Draw</span><span class="p">(</span><span class="n">face</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "ea031dc066334df7a7f0abd2a869faf6"}</script></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jay Gopalakrishnan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025-2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

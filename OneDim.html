@@ -1,0 +1,784 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Lagrange space on one-dimensional domains &#8212; Class activities on finite elements</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'OneDim';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Hands-on Class Activities on Finite Elements" href="README.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/NGSPDX.png" class="logo__image only-light" alt="Class activities on finite elements - Home"/>
+    <script>document.write(`<img src="_static/NGSPDX.png" class="logo__image only-dark" alt="Class activities on finite elements - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    Hands-on Class Activities on Finite Elements
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Lagrange space on one-dimensional domains</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/jayggg/fem-supplements" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/OneDim.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lagrange space on one-dimensional domains</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-element">1.1. One element</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gluing-two-elements">1.2. Gluing two elements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coupling-degrees-of-freedom">1.3. Coupling degrees of freedom</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approximation">1.4. Approximation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lowest-order-case">1.5. The lowest order case</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lagrange-space-on-one-dimensional-domains">
+<h1><span class="section-number">1. </span>Lagrange space on one-dimensional domains<a class="headerlink" href="#lagrange-space-on-one-dimensional-domains" title="Link to this heading">#</a></h1>
+<p>In this activity, we become familiar with a computational object that can represent members of the simplest finite element space, called the Lagrange finite element space. These are <em>vector spaces of functions</em> on a spatial domain. We will begin by seeing how distinct finite elements on a mesh are glued together to form such a space. The glued function space is often called a <em>global finite element space</em> to contrast it with the spaces on each individual finite element, referred to as <em>local finite element spaces</em>.</p>
+<p>We start by importing the Python objects we use in this notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ngsolve</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ng</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ngsolve.meshes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Make1DMesh</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ngsolve</span><span class="w"> </span><span class="kn">import</span> <span class="n">H1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">Discontinuous</span><span class="p">,</span> <span class="n">GridFunction</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">TABLEAU_COLORS</span> <span class="k">as</span> <span class="n">tc</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">tc</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">tc</span><span class="p">]</span>    
+</pre></div>
+</div>
+</div>
+</div>
+<section id="one-element">
+<h2><span class="section-number">1.1. </span>One element<a class="headerlink" href="#one-element" title="Link to this heading">#</a></h2>
+<p>We create a mesh of the unit interval <span class="math notranslate nohighlight">\([0, 1]\)</span> consisting of a single finite element on the same interval, as follows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mesh1</span> <span class="o">=</span> <span class="n">Make1DMesh</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># one element mesh of [0, 1]</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">mesh1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">point</span><span class="p">)</span>    <span class="c1"># confirm the mesh point coordinates</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0,)
+(1.0,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>In higher dimensions, the printed tuple <code class="docutils literal notranslate"><span class="pre">p.point</span></code> will show more coordinates.</p>
+<p>The quadratic Lagrange finite element on this single element is made in the <code class="docutils literal notranslate"><span class="pre">V</span></code> object below using the ngsolve facility <code class="docutils literal notranslate"><span class="pre">H1</span></code>. (The name <code class="docutils literal notranslate"><span class="pre">H1</span></code> refers to a Sobolev space related to the Lagrange space.) The <code class="docutils literal notranslate"><span class="pre">ndof</span></code> attribute stores the number of degrees of freedom of the element. In this case, we get the expected number of three degrees of freedom for the quadratic Lagrange element.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V1</span> <span class="o">=</span> <span class="n">H1</span><span class="p">(</span><span class="n">mesh1</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># set degree using the keyword &quot;order&quot;</span>
+<span class="n">V1</span><span class="o">.</span><span class="n">ndof</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Functions of finite element spaces are represented by <code class="docutils literal notranslate"><span class="pre">GridFunction</span></code> objects in ngsolve.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">GridFunction</span><span class="p">(</span><span class="n">V1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If <span class="math notranslate nohighlight">\(\theta_i(x)\)</span> denote the shape functions of this finite element, then any function in the finite element space takes the form</p>
+<div class="math notranslate nohighlight">
+\[
+  v(x) = \sum_i v_i \theta_i(x)
+\]</div>
+<p>for some numbers <span class="math notranslate nohighlight">\(v_i\)</span>. The <code class="docutils literal notranslate"><span class="pre">GridFunction</span></code> object <code class="docutils literal notranslate"><span class="pre">v</span></code> represents this function <span class="math notranslate nohighlight">\(v\)</span> and contains the numbers <span class="math notranslate nohighlight">\(v_i\)</span> in its data attribute <code class="docutils literal notranslate"><span class="pre">v.vec</span></code>. By printing out <code class="docutils literal notranslate"><span class="pre">v.vec</span></code> we thus have complete information on the function, provided we know the shape functions <span class="math notranslate nohighlight">\(\theta_i\)</span>. Similarly, by setting the array <code class="docutils literal notranslate"><span class="pre">v.vec</span></code>, we can represent any function in the finite element space as we wish.</p>
+<p>Not all finite element codes use the same shape functions (even if the space they span is a  classical finite element space). Let us acquaint ourselves with the Lagrange shape functions <span class="math notranslate nohighlight">\(\theta_i(x)\)</span> used by ngsolve. We need a small routine to evaluate the finite element function at many points (say a hundred, as set below) within an element and plot the result.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot1D</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">msh</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>  
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  Utility to plot 1D finite element functions</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="n">pts</span> <span class="o">=</span> <span class="p">[</span><span class="n">vtx</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">vtx</span> <span class="ow">in</span> <span class="n">msh</span><span class="o">.</span><span class="n">vertices</span><span class="p">]</span>
+  <span class="n">ev</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span><span class="o">.</span><span class="n">vertices</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">msh</span><span class="o">.</span><span class="n">Elements</span><span class="p">(</span><span class="n">ng</span><span class="o">.</span><span class="n">VOL</span><span class="p">)]</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ev</span><span class="p">)):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">pts</span><span class="p">[</span><span class="n">ev</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">nr</span><span class="p">]</span> 
+    <span class="n">b</span> <span class="o">=</span> <span class="n">pts</span><span class="p">[</span><span class="n">ev</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">nr</span><span class="p">]</span> 
+    <span class="n">aa</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">bb</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">aa</span><span class="p">,</span> <span class="n">bb</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">ws</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span><span class="p">(</span><span class="n">msh</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="n">style</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In three distinct colors, we see the three shape functions of the quadratic Lagrange element used within ngsolve. We discover that the Lagrange shape functions in ngsolve are not exactly the shape functions generated by the degrees of freedom of the principal lattice. But note that (see exercises) the same finite element can admit many distinct unisolvent degrees of freedom.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+  <span class="n">v</span><span class="o">.</span><span class="n">vec</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="n">v</span><span class="o">.</span><span class="n">vec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">plot1D</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">mesh1</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Three Lagrange shape functions $</span><span class="se">\\</span><span class="s1">theta_i$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/0214ec46b47e134e3f09b56c88e03b7f83f9286599ca3feca3fa00797950242b.png" src="_images/0214ec46b47e134e3f09b56c88e03b7f83f9286599ca3feca3fa00797950242b.png" />
+</div>
+</div>
+</section>
+<section id="gluing-two-elements">
+<h2><span class="section-number">1.2. </span>Gluing two elements<a class="headerlink" href="#gluing-two-elements" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mesh2</span> <span class="o">=</span> <span class="n">Make1DMesh</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># two element mesh</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">mesh2</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">point</span><span class="p">)</span>     <span class="c1"># this mesh now has 3 points</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0,)
+(0.5,)
+(1.0,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>On this mesh of two elements, let us start by examining two <em>independent</em> quadratic Lagrange elements, where   functions of one element are <em>not glued</em> to the next element. This is achieved using the <code class="docutils literal notranslate"><span class="pre">Discontinuous</span></code> facility in ngsolve. As expected we now find a space of dimension <span class="math notranslate nohighlight">\(3 + 3 = 6\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V2</span> <span class="o">=</span> <span class="n">Discontinuous</span><span class="p">(</span><span class="n">H1</span><span class="p">(</span><span class="n">mesh2</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">V2</span><span class="o">.</span><span class="n">ndof</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">GridFunction</span><span class="p">(</span><span class="n">V2</span><span class="p">)</span>
+<span class="n">v</span><span class="o">.</span><span class="n">vec</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">v</span><span class="o">.</span><span class="n">vec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">plot1D</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">mesh2</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;First discontinuous shape function&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/98de1ce68fa81207f818e4474e795f432f2f1250f744c5cc322f5fb8dbc39355.png" src="_images/98de1ce68fa81207f818e4474e795f432f2f1250f744c5cc322f5fb8dbc39355.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="o">.</span><span class="n">vec</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">v</span><span class="o">.</span><span class="n">vec</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">plot1D</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">mesh2</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;k:&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Fourth discontinuous shape function&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1f0f5a073231a710230ea36989c1bd42673df3007c5b1411cc873bcbedc90c65.png" src="_images/1f0f5a073231a710230ea36989c1bd42673df3007c5b1411cc873bcbedc90c65.png" />
+</div>
+</div>
+<p>If we glue these first and fourth functions together we get a continuous function. The global Lagrange finite element space accomplishes this by coalescing the first and fourth degrees of freedom into one, thereby merging the above two shape functions into one global shape function corresponding to the coalesced global degree of freedom. We obtain this global Lagrange finite element space in ngsolve by simply omitting the adjective <code class="docutils literal notranslate"><span class="pre">Discontinuous</span></code> from the prior space definition.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V</span> <span class="o">=</span> <span class="n">H1</span><span class="p">(</span><span class="n">mesh2</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># omitted &quot;Discontinuous&quot;</span>
+<span class="n">V</span><span class="o">.</span><span class="n">ndof</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<p>All <em>global shape functions</em> of this space can be visualized in the same way as before. We immediately see that none of them are discontinuous.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">GridFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;:y&#39;</span><span class="p">,</span> <span class="s1">&#39;:m&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">V</span><span class="o">.</span><span class="n">ndof</span><span class="p">):</span>
+  <span class="n">v</span><span class="o">.</span><span class="n">vec</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">0</span> 
+  <span class="n">v</span><span class="o">.</span><span class="n">vec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">plot1D</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">mesh2</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Continuous global shape functions&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a505861e3f9c075632b65daa3c934596bb0139d43d0381549be2874a2987fbaf.png" src="_images/a505861e3f9c075632b65daa3c934596bb0139d43d0381549be2874a2987fbaf.png" />
+</div>
+</div>
+<p>The global finite element space consists of functions of the form</p>
+<div class="math notranslate nohighlight">
+\[
+v(x) = \sum_i v_i \Theta_i(x)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Theta_i(x)\)</span> are global shape functions. For the current example, we plotted them above. Note that when <span class="math notranslate nohighlight">\(\Theta_i\)</span> is restricted to a single element, we obtain either the zero function or a local shape function <span class="math notranslate nohighlight">\(\theta_j\)</span> of that element. A set of linear functionals <span class="math notranslate nohighlight">\(G_j\)</span> on the global finite element space having the property <span class="math notranslate nohighlight">\(G_j(\Theta_j) = \delta_{ij}\)</span> are called <em>global degrees of freedom.</em> Here <span class="math notranslate nohighlight">\(\delta_{ij}\)</span> denotes the Kronecker delta (equals 1 if <span class="math notranslate nohighlight">\(i=j\)</span> and 0 otherwise).</p>
+</section>
+<section id="coupling-degrees-of-freedom">
+<h2><span class="section-number">1.3. </span>Coupling degrees of freedom<a class="headerlink" href="#coupling-degrees-of-freedom" title="Link to this heading">#</a></h2>
+<p>When some local degrees of freedom of distinct finite elements are fused together to form a single global degree of freedom, like we saw above, the result is called a <em>coupling degree of freedom</em>. In ngsolve, every global shape function, or equivalently every global degree of freedom, is given a <code class="docutils literal notranslate"><span class="pre">CouplingType</span></code>. When its <code class="docutils literal notranslate"><span class="pre">CouplingType</span></code> is <code class="docutils literal notranslate"><span class="pre">LOCAL_DOF</span></code>, it is <em>not</em> a coupling degree of freedom; all other values of <code class="docutils literal notranslate"><span class="pre">CouplingType</span></code> indicates a coupling degree of freedom.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">V</span><span class="o">.</span><span class="n">ndof</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">V</span><span class="o">.</span><span class="n">CouplingType</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>COUPLING_TYPE.WIREBASKET_DOF
+COUPLING_TYPE.WIREBASKET_DOF
+COUPLING_TYPE.WIREBASKET_DOF
+COUPLING_TYPE.LOCAL_DOF
+COUPLING_TYPE.LOCAL_DOF
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this case, we see that all degrees of freedom are coupling degrees of freedom except the last two. Each degree of freedom  marked <code class="docutils literal notranslate"><span class="pre">LOCAL_DOF</span></code> is identical to a local element degree of freedom within some element and its corresponding shape function is supported only on that single element. (You can verify that the last two shape functions in the current example are supported only on a single element by reviewing the plots of the global shape functions above.)</p>
+</section>
+<section id="approximation">
+<h2><span class="section-number">1.4. </span>Approximation<a class="headerlink" href="#approximation" title="Link to this heading">#</a></h2>
+<p>One method of creating a finite element approximation of some given function <span class="math notranslate nohighlight">\(f(x)\)</span>  is by the finite element interpolant. In ngsolve, another technique of creating approximations is offered as the default. This is in a method called <code class="docutils literal notranslate"><span class="pre">Set</span></code> that all <code class="docutils literal notranslate"><span class="pre">GridFunctions</span></code> have. It implements the <em>Oswald approximation,</em> obtained by first computing the <span class="math notranslate nohighlight">\(L_2\)</span> projection of <span class="math notranslate nohighlight">\(f\)</span> into each local finite element space and then assigning to every coupling degree of freedom the average of the degrees of freedom of the projection that were fused to form that coupling degree of freedom.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plot1D</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="p">),</span> <span class="n">mesh2</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;:b&#39;</span><span class="p">)</span>
+<span class="n">plot1D</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">mesh2</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9ea950b9979e431aa0191e8fb4b484fad393317319a94786b9e90c988e137455.png" src="_images/9ea950b9979e431aa0191e8fb4b484fad393317319a94786b9e90c988e137455.png" />
+</div>
+</div>
+<p>Clearly the approximation (solid curve) and the original (dotted sine curve) are close, but not identical.</p>
+<p><strong>Questions for discussion:</strong></p>
+<ul class="simple">
+<li><p>What happens when you lower the degree on the same mesh?</p></li>
+<li><p>What happens when you increase the degree on the same mesh?</p></li>
+<li><p>How can you tell that these approximations are not obtained by the canonical finite element interpolation?</p></li>
+</ul>
+<p>One way to improve the approximation is by increasing the degree. Another way is to make the mesh finer, as we see now.</p>
+</section>
+<section id="the-lowest-order-case">
+<h2><span class="section-number">1.5. </span>The lowest order case<a class="headerlink" href="#the-lowest-order-case" title="Link to this heading">#</a></h2>
+<p>Partition the interval <span class="math notranslate nohighlight">\([0, 1]\)</span> using a uniform mesh <span class="math notranslate nohighlight">\(\{ x_i = i h: i=0, \ldots, N \}\)</span> of <span class="math notranslate nohighlight">\(N+1\)</span> points, where the mesh size is <span class="math notranslate nohighlight">\(h = 1/N\)</span> and set</p>
+<div class="math notranslate nohighlight">
+\[
+V_{h, 1} = \{ v: \; v \text{ is continuous and }
+v|_{[x_i, x_{i+1}]} \text { is linear }\}.
+\]</div>
+<p>This vector space is called the <strong>lowest order Lagrange finite element space</strong> in the one-dimensional domain <span class="math notranslate nohighlight">\([0,1]\)</span>. With <span class="math notranslate nohighlight">\(N\)</span> as a variable to adjust, let us make  this space in ngsolve:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">5</span> 
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">Make1DMesh</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> 
+<span class="n">V0</span> <span class="o">=</span> <span class="n">H1</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">V0</span><span class="o">.</span><span class="n">ndof</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">GridFunction</span><span class="p">(</span><span class="n">V0</span><span class="p">)</span>
+<span class="n">v</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plot1D</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="p">),</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;:b&#39;</span><span class="p">)</span>
+<span class="n">plot1D</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ea007651a6a581661de00848e682b7d22243042d8136ccca7cd033faf483cacd.png" src="_images/ea007651a6a581661de00848e682b7d22243042d8136ccca7cd033faf483cacd.png" />
+</div>
+</div>
+<p>Does the approximation improve as <span class="math notranslate nohighlight">\(h \to 0\)</span> or <span class="math notranslate nohighlight">\(N \to \infty\)</span>?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">v</span><span class="o">.</span><span class="n">vec</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">v</span><span class="o">.</span><span class="n">vec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">plot1D</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Global shape functions $</span><span class="se">\\</span><span class="s1">Theta_i$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ef5fc4982f588d7c26e75a99b65f4cf135c1d6b11a4372798b29d2458f566160.png" src="_images/ef5fc4982f588d7c26e75a99b65f4cf135c1d6b11a4372798b29d2458f566160.png" />
+</div>
+</div>
+<p>These functions <span class="math notranslate nohighlight">\(\Theta_i \in V_{h1}\)</span> with the property</p>
+<div class="math notranslate nohighlight">
+\[
+\Theta_i(x_j) = \delta_{ij}
+\]</div>
+<p>at every mesh point <span class="math notranslate nohighlight">\(x_j\)</span> are often called <strong>hat functions</strong> colloquially. Note that although the statement <span class="math notranslate nohighlight">\(\Theta_i(x_j) = \delta_{ij}\)</span> only gives the values of <span class="math notranslate nohighlight">\(\Theta_i\)</span> at the mesh vertices <span class="math notranslate nohighlight">\(x_j\)</span>, that is enough to determine the function <span class="math notranslate nohighlight">\(\Theta_i\)</span> everywhere, since it is linear in between the mesh points.</p>
+<p><strong>Questions for discussion</strong></p>
+<ul class="simple">
+<li><p>What type of an object is <code class="docutils literal notranslate"><span class="pre">sin(x)</span></code>?</p></li>
+<li><p>Can you try other function expressions?</p></li>
+</ul>
+<p>Please review <a class="reference external" href="https://ngsolve.org/docu/latest/i-tutorials/unit-1.2-coefficient/coefficientfunction.html">NGSolve i-Tutorial 1.2</a> to learn more about <code class="docutils literal notranslate"><span class="pre">CoefficientFunction</span></code> objects.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="README.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Hands-on Class Activities on Finite Elements</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-element">1.1. One element</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gluing-two-elements">1.2. Gluing two elements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coupling-degrees-of-freedom">1.3. Coupling degrees of freedom</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approximation">1.4. Approximation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lowest-order-case">1.5. The lowest order case</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jay Gopalakrishnan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025-2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
