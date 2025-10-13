@@ -1,14 +1,27 @@
-# Finite Elements: Hands-on Class Activities
+# Hands-on Class Activities on Finite Elements
 
 
-Notebooks can be found here:
+This is a collection of notebooks prepared for hands-on mathematical class
+activities using the open-source library
+[NGSolve](https://ngsolve.org). 
+
+- It is appropriate for use in graduate finite element courses as
+supplementary open educational material. 
+
+- It is not intended to replace textbooks.
+
+- It is intended to provide starting points for instructor-guided
+open-ended interactive experimentation in class.
+
+- These materials were last used and updated during a
+2025-26 graduate course offering on finite elements at [Portland State
+University](https://www.pdx.edu).
 
 
-https://jayggg.github.io/fem-supplements/
+URL: https://jayggg.github.io/fem-supplements/
+
+Author: [Jay Gopalakrishnan](https://web.pdx.edu/~gjay/)
 
 
-Author: Jay Gopalakrishnan 
-
-Email:  gjay@pdx.edu
 
 

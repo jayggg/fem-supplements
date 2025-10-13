@@ -5,8 +5,8 @@ format: jb-book
 root: README.md
 
 parts:
-  - caption: FEM Class Activities
+  - caption: Notebooks
     numbered: True
     chapters:
-      - file: Lagrange.ipynb
-      - file: ProjectionBAE.ipynb
+      - file: OneDim.ipynb
+

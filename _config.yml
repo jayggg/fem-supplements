@@ -3,7 +3,8 @@
 
 title: Class activities on finite elements
 author: Jay Gopalakrishnan
-copyright : "2025"  # Copyright year to be placed in the footer
+logo: NGSPDX.png
+copyright : "2025-2026"  # Copyright year to be placed in the footer
 
 repository:
   url: https://github.com/jayggg/fem-supplements
@@ -46,5 +47,6 @@ parse:
     - amsmath
     - linkify
     - colon_fence
+
   myst_dmath_double_inline: true
-  
+
