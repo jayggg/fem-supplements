@@ -19,7 +19,9 @@ University](https://www.pdx.edu).
 
 
 Download code: https://github.com/jayggg/fem-supplements
+
 Browse Notebooks: https://jayggg.github.io/fem-supplements/
+
 Author: [Jay Gopalakrishnan](https://web.pdx.edu/~gjay/)
 
 
