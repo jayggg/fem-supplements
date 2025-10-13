@@ -18,8 +18,8 @@ open-ended interactive experimentation in class.
 University](https://www.pdx.edu).
 
 
-URL: https://jayggg.github.io/fem-supplements/
-
+Download code: https://github.com/jayggg/fem-supplements
+Browse Notebooks: https://jayggg.github.io/fem-supplements/
 Author: [Jay Gopalakrishnan](https://web.pdx.edu/~gjay/)
 
 
