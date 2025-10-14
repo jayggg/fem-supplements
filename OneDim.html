@@ -347,7 +347,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-element">1.1. One element</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gluing-two-elements">1.2. Gluing two elements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-elements-are-glued">1.2. How elements are glued</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coupling-degrees-of-freedom">1.3. Coupling degrees of freedom</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approximation">1.4. Approximation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lowest-order-case">1.5. The lowest order case</a></li>
@@ -398,7 +398,7 @@ document.write(`
 </div>
 </div>
 <p>In higher dimensions, the printed tuple <code class="docutils literal notranslate"><span class="pre">p.point</span></code> will show more coordinates.</p>
-<p>The quadratic Lagrange finite element on this single element is made in the <code class="docutils literal notranslate"><span class="pre">V</span></code> object below using the ngsolve facility <code class="docutils literal notranslate"><span class="pre">H1</span></code>. (The name <code class="docutils literal notranslate"><span class="pre">H1</span></code> refers to a Sobolev space related to the Lagrange space.) The <code class="docutils literal notranslate"><span class="pre">ndof</span></code> attribute stores the number of degrees of freedom of the element. In this case, we get the expected number of three degrees of freedom for the quadratic Lagrange element.</p>
+<p>The quadratic Lagrange finite element on this single element is made in the <code class="docutils literal notranslate"><span class="pre">V1</span></code> object below using the ngsolve facility <code class="docutils literal notranslate"><span class="pre">H1</span></code>. (The name <code class="docutils literal notranslate"><span class="pre">H1</span></code> refers to a Sobolev space related to the Lagrange finite elements.) The <code class="docutils literal notranslate"><span class="pre">ndof</span></code> attribute stores the number of degrees of freedom of the element. In this case, we get the expected number of three degrees of freedom for the quadratic Lagrange element.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V1</span> <span class="o">=</span> <span class="n">H1</span><span class="p">(</span><span class="n">mesh1</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># set degree using the keyword &quot;order&quot;</span>
@@ -459,12 +459,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0214ec46b47e134e3f09b56c88e03b7f83f9286599ca3feca3fa00797950242b.png" src="_images/0214ec46b47e134e3f09b56c88e03b7f83f9286599ca3feca3fa00797950242b.png" />
+<img alt="_images/f5e164d9944d606005cecc0f7faf7ee74ce9b3dde5a7820bae96a1b784fce061.png" src="_images/f5e164d9944d606005cecc0f7faf7ee74ce9b3dde5a7820bae96a1b784fce061.png" />
 </div>
 </div>
 </section>
-<section id="gluing-two-elements">
-<h2><span class="section-number">1.2. </span>Gluing two elements<a class="headerlink" href="#gluing-two-elements" title="Link to this heading">#</a></h2>
+<section id="how-elements-are-glued">
+<h2><span class="section-number">1.2. </span>How elements are glued<a class="headerlink" href="#how-elements-are-glued" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mesh2</span> <span class="o">=</span> <span class="n">Make1DMesh</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># two element mesh</span>
@@ -504,7 +504,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/98de1ce68fa81207f818e4474e795f432f2f1250f744c5cc322f5fb8dbc39355.png" src="_images/98de1ce68fa81207f818e4474e795f432f2f1250f744c5cc322f5fb8dbc39355.png" />
+<img alt="_images/a634aa4d46d4f5d8dfe1dbd5deae0f6106c2807079d7fecdc092fe55e2049ed2.png" src="_images/a634aa4d46d4f5d8dfe1dbd5deae0f6106c2807079d7fecdc092fe55e2049ed2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -515,10 +515,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1f0f5a073231a710230ea36989c1bd42673df3007c5b1411cc873bcbedc90c65.png" src="_images/1f0f5a073231a710230ea36989c1bd42673df3007c5b1411cc873bcbedc90c65.png" />
+<img alt="_images/3e0548e66e10477c5e8a8bab26997235d1c1c16754487fb070c9fc1a8907ad6c.png" src="_images/3e0548e66e10477c5e8a8bab26997235d1c1c16754487fb070c9fc1a8907ad6c.png" />
 </div>
 </div>
-<p>If we glue these first and fourth functions together we get a continuous function. The global Lagrange finite element space accomplishes this by coalescing the first and fourth degrees of freedom into one, thereby merging the above two shape functions into one global shape function corresponding to the coalesced global degree of freedom. We obtain this global Lagrange finite element space in ngsolve by simply omitting the adjective <code class="docutils literal notranslate"><span class="pre">Discontinuous</span></code> from the prior space definition.</p>
+<p>If we glue these first and fourth functions together we get a continuous function. The global Lagrange finite element space accomplishes this by coalescing the first and fourth degrees of freedom into one, thereby merging the above two shape functions into one global shape function corresponding to the fused global degree of freedom.  This global Lagrange finite element space can be obtained in ngsolve by simply omitting the adjective <code class="docutils literal notranslate"><span class="pre">Discontinuous</span></code> from the prior space definition.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V</span> <span class="o">=</span> <span class="n">H1</span><span class="p">(</span><span class="n">mesh2</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># omitted &quot;Discontinuous&quot;</span>
@@ -545,7 +545,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a505861e3f9c075632b65daa3c934596bb0139d43d0381549be2874a2987fbaf.png" src="_images/a505861e3f9c075632b65daa3c934596bb0139d43d0381549be2874a2987fbaf.png" />
+<img alt="_images/b5c12547d7ee823b3e2b8eda5abc0d6daa4639d096b53be91d8cf944f4b1a881.png" src="_images/b5c12547d7ee823b3e2b8eda5abc0d6daa4639d096b53be91d8cf944f4b1a881.png" />
 </div>
 </div>
 <p>The global finite element space consists of functions of the form</p>
@@ -589,7 +589,7 @@ COUPLING_TYPE.LOCAL_DOF
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9ea950b9979e431aa0191e8fb4b484fad393317319a94786b9e90c988e137455.png" src="_images/9ea950b9979e431aa0191e8fb4b484fad393317319a94786b9e90c988e137455.png" />
+<img alt="_images/c677991c13ee191de95d9cc29ecd49400ab85d467e77da0a1c9344c6a7851943.png" src="_images/c677991c13ee191de95d9cc29ecd49400ab85d467e77da0a1c9344c6a7851943.png" />
 </div>
 </div>
 <p>Clearly the approximation (solid curve) and the original (dotted sine curve) are close, but not identical.</p>
@@ -606,7 +606,7 @@ COUPLING_TYPE.LOCAL_DOF
 <p>Partition the interval <span class="math notranslate nohighlight">\([0, 1]\)</span> using a uniform mesh <span class="math notranslate nohighlight">\(\{ x_i = i h: i=0, \ldots, N \}\)</span> of <span class="math notranslate nohighlight">\(N+1\)</span> points, where the mesh size is <span class="math notranslate nohighlight">\(h = 1/N\)</span> and set</p>
 <div class="math notranslate nohighlight">
 \[
-V_{h, 1} = \{ v: \; v \text{ is continuous and }
+V_{h1} = \{ v: \; v \text{ is continuous and }
 v|_{[x_i, x_{i+1}]} \text { is linear }\}.
 \]</div>
 <p>This vector space is called the <strong>lowest order Lagrange finite element space</strong> in the one-dimensional domain <span class="math notranslate nohighlight">\([0,1]\)</span>. With <span class="math notranslate nohighlight">\(N\)</span> as a variable to adjust, let us make  this space in ngsolve:</p>
@@ -614,8 +614,8 @@ v|_{[x_i, x_{i+1}]} \text { is linear }\}.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">5</span> 
 <span class="n">mesh</span> <span class="o">=</span> <span class="n">Make1DMesh</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> 
-<span class="n">V0</span> <span class="o">=</span> <span class="n">H1</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">V0</span><span class="o">.</span><span class="n">ndof</span>
+<span class="n">Vh1</span> <span class="o">=</span> <span class="n">H1</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">Vh1</span><span class="o">.</span><span class="n">ndof</span>
 </pre></div>
 </div>
 </div>
@@ -625,9 +625,10 @@ v|_{[x_i, x_{i+1}]} \text { is linear }\}.
 </div>
 </div>
 </div>
+<p>From <code class="docutils literal notranslate"><span class="pre">ndof</span></code> outputs, we gather that the dimension of this space made using <span class="math notranslate nohighlight">\(N\)</span> elements appears to be equal to <span class="math notranslate nohighlight">\(N+1\)</span>. Think about how to prove this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">GridFunction</span><span class="p">(</span><span class="n">V0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">GridFunction</span><span class="p">(</span><span class="n">Vh1</span><span class="p">)</span>
 <span class="n">v</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
 <span class="n">plot1D</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="p">),</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;:b&#39;</span><span class="p">)</span>
 <span class="n">plot1D</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
@@ -635,10 +636,13 @@ v|_{[x_i, x_{i+1}]} \text { is linear }\}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ea007651a6a581661de00848e682b7d22243042d8136ccca7cd033faf483cacd.png" src="_images/ea007651a6a581661de00848e682b7d22243042d8136ccca7cd033faf483cacd.png" />
+<img alt="_images/cb4ba8b606ead04c9ccb83819eacd0751312dad7ecbb79619ea2bc1c42e1733d.png" src="_images/cb4ba8b606ead04c9ccb83819eacd0751312dad7ecbb79619ea2bc1c42e1733d.png" />
 </div>
 </div>
-<p>Does the approximation improve as <span class="math notranslate nohighlight">\(h \to 0\)</span> or <span class="math notranslate nohighlight">\(N \to \infty\)</span>?</p>
+<p><strong>Question for discussion</strong></p>
+<ul class="simple">
+<li><p>Does the approximation appear to improve as <span class="math notranslate nohighlight">\(h \to 0\)</span> or <span class="math notranslate nohighlight">\(N \to \infty\)</span>?</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
@@ -649,7 +653,7 @@ v|_{[x_i, x_{i+1}]} \text { is linear }\}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ef5fc4982f588d7c26e75a99b65f4cf135c1d6b11a4372798b29d2458f566160.png" src="_images/ef5fc4982f588d7c26e75a99b65f4cf135c1d6b11a4372798b29d2458f566160.png" />
+<img alt="_images/86185a85b15519cc59365f1a877d29992f26dab2b57861734fea1ccaf4901733.png" src="_images/86185a85b15519cc59365f1a877d29992f26dab2b57861734fea1ccaf4901733.png" />
 </div>
 </div>
 <p>These functions <span class="math notranslate nohighlight">\(\Theta_i \in V_{h1}\)</span> with the property</p>
@@ -660,7 +664,8 @@ v|_{[x_i, x_{i+1}]} \text { is linear }\}.
 <p>at every mesh point <span class="math notranslate nohighlight">\(x_j\)</span> are often called <strong>hat functions</strong> colloquially. Note that although the statement <span class="math notranslate nohighlight">\(\Theta_i(x_j) = \delta_{ij}\)</span> only gives the values of <span class="math notranslate nohighlight">\(\Theta_i\)</span> at the mesh vertices <span class="math notranslate nohighlight">\(x_j\)</span>, that is enough to determine the function <span class="math notranslate nohighlight">\(\Theta_i\)</span> everywhere, since it is linear in between the mesh points.</p>
 <p><strong>Questions for discussion</strong></p>
 <ul class="simple">
-<li><p>What type of an object is <code class="docutils literal notranslate"><span class="pre">sin(x)</span></code>?</p></li>
+<li><p>Are <span class="math notranslate nohighlight">\(\Theta_i\)</span> linearly independent functions?</p></li>
+<li><p>What type of an object is <code class="docutils literal notranslate"><span class="pre">sin(x)</span></code> in the python code?</p></li>
 <li><p>Can you try other function expressions?</p></li>
 </ul>
 <p>Please review <a class="reference external" href="https://ngsolve.org/docu/latest/i-tutorials/unit-1.2-coefficient/coefficientfunction.html">NGSolve i-Tutorial 1.2</a> to learn more about <code class="docutils literal notranslate"><span class="pre">CoefficientFunction</span></code> objects.</p>
@@ -723,7 +728,7 @@ v|_{[x_i, x_{i+1}]} \text { is linear }\}.
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-element">1.1. One element</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gluing-two-elements">1.2. Gluing two elements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-elements-are-glued">1.2. How elements are glued</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coupling-degrees-of-freedom">1.3. Coupling degrees of freedom</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approximation">1.4. Approximation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lowest-order-case">1.5. The lowest order case</a></li>
