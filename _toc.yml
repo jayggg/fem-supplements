@@ -10,3 +10,4 @@ parts:
     chapters:
       - file: OneDim.ipynb
       - file: BestApprox.ipynb
+      - file: Rates.ipynb
