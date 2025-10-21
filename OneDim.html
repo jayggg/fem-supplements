@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'OneDim';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="2. Best approximations and 2D domains" href="BestApprox.html" />
+    <link rel="next" title="2. Best approximations in 2D" href="BestApprox.html" />
     <link rel="prev" title="Working with Finite Elements" href="README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -184,7 +184,8 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Elements on 1D domains</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BestApprox.html">2. Best approximations and 2D domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BestApprox.html">2. Best approximations in 2D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Rates.html">3. Convergence rates</a></li>
 </ul>
 
     </div>
@@ -462,7 +463,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1b88d82a0a062cfa6b8f203b194dd7793abf5ed27d70e898024bbf14539a0061.png" src="_images/1b88d82a0a062cfa6b8f203b194dd7793abf5ed27d70e898024bbf14539a0061.png" />
+<img alt="_images/f5e164d9944d606005cecc0f7faf7ee74ce9b3dde5a7820bae96a1b784fce061.png" src="_images/f5e164d9944d606005cecc0f7faf7ee74ce9b3dde5a7820bae96a1b784fce061.png" />
 </div>
 </div>
 </section>
@@ -507,7 +508,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f21a509bb768b3ee714dd492a5f381f2a784c77cc033fe9c2e3bbf36275f3181.png" src="_images/f21a509bb768b3ee714dd492a5f381f2a784c77cc033fe9c2e3bbf36275f3181.png" />
+<img alt="_images/a634aa4d46d4f5d8dfe1dbd5deae0f6106c2807079d7fecdc092fe55e2049ed2.png" src="_images/a634aa4d46d4f5d8dfe1dbd5deae0f6106c2807079d7fecdc092fe55e2049ed2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -518,7 +519,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d3a1f8e69c4b9b59c87c34be301313ef8fe6d34402230f99885597cfe4a1a441.png" src="_images/d3a1f8e69c4b9b59c87c34be301313ef8fe6d34402230f99885597cfe4a1a441.png" />
+<img alt="_images/3e0548e66e10477c5e8a8bab26997235d1c1c16754487fb070c9fc1a8907ad6c.png" src="_images/3e0548e66e10477c5e8a8bab26997235d1c1c16754487fb070c9fc1a8907ad6c.png" />
 </div>
 </div>
 <p>If we glue these first and fourth functions together we get a continuous function. The global Lagrange finite element space accomplishes this by coalescing the first and fourth degrees of freedom into one, thereby merging the above two shape functions into one global shape function corresponding to the fused global degree of freedom.  This global Lagrange finite element space can be obtained in ngsolve by simply omitting the adjective <code class="docutils literal notranslate"><span class="pre">Discontinuous</span></code> from the prior space definition.</p>
@@ -548,7 +549,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2a1983d53454cb9abc4ac9981324d9575e9c6032152cb20087c2c6b46a3d5ff4.png" src="_images/2a1983d53454cb9abc4ac9981324d9575e9c6032152cb20087c2c6b46a3d5ff4.png" />
+<img alt="_images/b5c12547d7ee823b3e2b8eda5abc0d6daa4639d096b53be91d8cf944f4b1a881.png" src="_images/b5c12547d7ee823b3e2b8eda5abc0d6daa4639d096b53be91d8cf944f4b1a881.png" />
 </div>
 </div>
 <p>The global finite element space consists of functions of the form</p>
@@ -592,7 +593,7 @@ COUPLING_TYPE.LOCAL_DOF
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/10bb6b2be7be06b525616ec51024579a7d2d823932f146b8826c004c4ea2b17d.png" src="_images/10bb6b2be7be06b525616ec51024579a7d2d823932f146b8826c004c4ea2b17d.png" />
+<img alt="_images/c677991c13ee191de95d9cc29ecd49400ab85d467e77da0a1c9344c6a7851943.png" src="_images/c677991c13ee191de95d9cc29ecd49400ab85d467e77da0a1c9344c6a7851943.png" />
 </div>
 </div>
 <p>Clearly the approximation (solid curve) and the original (dotted sine curve) are close, but not identical.</p>
@@ -639,7 +640,7 @@ v|_{[x_i, x_{i+1}]} \text { is linear }\}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/54c92bc2d6ba7e9d2a855aec588e4010547fc817c99d537138842b1be77b5b97.png" src="_images/54c92bc2d6ba7e9d2a855aec588e4010547fc817c99d537138842b1be77b5b97.png" />
+<img alt="_images/cb4ba8b606ead04c9ccb83819eacd0751312dad7ecbb79619ea2bc1c42e1733d.png" src="_images/cb4ba8b606ead04c9ccb83819eacd0751312dad7ecbb79619ea2bc1c42e1733d.png" />
 </div>
 </div>
 <p><strong>Question for discussion</strong></p>
@@ -656,7 +657,7 @@ v|_{[x_i, x_{i+1}]} \text { is linear }\}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ae6dec21bad89067ae4468813ff674505ede7224b0a9375fe59ce2481038c1eb.png" src="_images/ae6dec21bad89067ae4468813ff674505ede7224b0a9375fe59ce2481038c1eb.png" />
+<img alt="_images/86185a85b15519cc59365f1a877d29992f26dab2b57861734fea1ccaf4901733.png" src="_images/86185a85b15519cc59365f1a877d29992f26dab2b57861734fea1ccaf4901733.png" />
 </div>
 </div>
 <p>These functions <span class="math notranslate nohighlight">\(\Theta_i \in V_{h1}\)</span> with the property</p>
@@ -679,8 +680,9 @@ v|_{[x_i, x_{i+1}]} \text { is linear }\}.
 <ul class="simple">
 <li><p>the Lagrange and discontinuous Galerkin (DG) spaces in 1D,</p></li>
 <li><p>meshes of one-dimensional domains,</p></li>
-<li><p>evaluating/plotting finite element functions at points within an element,</p></li>
-<li><p>how elements of spaces are captured by vector arrays,</p></li>
+<li><p>evaluating finite element functions at points within an element,</p></li>
+<li><p>plotting 1D finite element functions using matplotlib,</p></li>
+<li><p>how functions in the spaces are captured by finite arrays,</p></li>
 <li><p>local degrees of freedom and coupling degrees of freedom,</p></li>
 <li><p>fusing local degrees of freedom to global ones,</p></li>
 <li><p>the Oswald approximation,</p></li>
@@ -734,7 +736,7 @@ v|_{[x_i, x_{i+1}]} \text { is linear }\}.
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Best approximations and 2D domains</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Best approximations in 2D</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

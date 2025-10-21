@@ -1,0 +1,776 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Best approximation &#8212; Class activities on finite elements</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'BestApprox-Copy1';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/NGSPDX.png" class="logo__image only-light" alt="Class activities on finite elements - Home"/>
+    <script>document.write(`<img src="_static/NGSPDX.png" class="logo__image only-dark" alt="Class activities on finite elements - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    Working with Finite Elements
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="OneDim.html">1. Elements on 1D domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BestApprox.html">2. Best approximations in 2D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Rates.html">3. Convergence rates</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/jayggg/fem-supplements" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/BestApprox-Copy1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Best approximation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Best approximation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#constrained-minimization">Constrained minimization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ngsolve</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ng</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ngsolve</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mesh</span><span class="p">,</span> <span class="n">H1</span><span class="p">,</span> <span class="n">L2</span><span class="p">,</span> <span class="n">FESpace</span><span class="p">,</span> <span class="n">GridFunction</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">exp</span> 
+<span class="kn">from</span><span class="w"> </span><span class="nn">netgen.occ</span><span class="w"> </span><span class="kn">import</span> <span class="n">unit_square</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ngsolve.webgui</span><span class="w"> </span><span class="kn">import</span> <span class="n">Draw</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span><span class="n">unit_square</span><span class="o">.</span><span class="n">GenerateMesh</span><span class="p">(</span><span class="n">maxh</span><span class="o">=</span><span class="mf">0.4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V2</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">GridFunction</span><span class="p">(</span><span class="n">V2</span><span class="p">)</span>
+<span class="n">v</span><span class="o">.</span><span class="n">vec</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">v</span><span class="o">.</span><span class="n">vec</span><span class="p">[</span><span class="mi">40</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">Draw</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">deformation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">euler_angles</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+     <span class="n">settings</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Misc&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;subdivision&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="s2">&quot;line_thickness&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;fast_draw&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+               <span class="s2">&quot;Colormap&quot;</span><span class="p">:{</span><span class="s2">&quot;autoscale&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;ncolors&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">}});</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "4304d873728e4313867e3275dd5d15ac"}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">any</span><span class="p">(</span> <span class="p">[</span><span class="n">U</span><span class="o">.</span><span class="n">CouplingType</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="n">ng</span><span class="o">.</span><span class="n">COUPLING_TYPE</span><span class="o">.</span><span class="n">LOCAL_DOF</span> 
+      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">ndof</span><span class="p">)]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="nb">any</span><span class="p">(</span> <span class="p">[</span><span class="n">U</span><span class="o">.</span><span class="n">CouplingType</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="n">ng</span><span class="o">.</span><span class="n">COUPLING_TYPE</span><span class="o">.</span><span class="n">LOCAL_DOF</span> 
+<span class="nn">----&gt; 2       for i</span> in <span class="ni">range</span><span class="nt">(U.ndof)] )</span>
+
+<span class="ne">NameError</span>: name &#39;U&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Questions for discussion:</strong></p>
+<ul class="simple">
+<li><p>For what degrees does the Lagrange space have local degrees of freedom in two space dimensions?</p></li>
+<li><p>What would be your answer in higher dimensions?</p></li>
+<li><p>How do we make finite element spaces on three-dimensional domains in ngsolve?</p></li>
+</ul>
+<section id="best-approximation">
+<h1>Best approximation<a class="headerlink" href="#best-approximation" title="Link to this heading">#</a></h1>
+<p>There are multiple ways to approximate a given function <code class="docutils literal notranslate"><span class="pre">f</span></code> by finite element spaces.</p>
+<ul class="simple">
+<li><p>One is by the Oswald approximation, implemented in ngsolve by the <code class="docutils literal notranslate"><span class="pre">GridFunction.Set(f)</span></code> method, as we have <a class="reference internal" href="OneDim.html"><span class="std std-doc">already seen</span></a>.</p></li>
+<li><p>Another is the canonical finite element interpolant, obtainable in ngsolve using the same <code class="docutils literal notranslate"><span class="pre">Set</span></code> method, but with an additional keyword argument: <code class="docutils literal notranslate"><span class="pre">GridFunction.Set(f,</span> <span class="pre">dual=True)</span></code>.</p></li>
+<li><p>While the above two are local constructs, there is a global approximation method which gives the best possible approximation to <code class="docutils literal notranslate"><span class="pre">f</span></code> from the finite element space, which we  now discuss.</p></li>
+</ul>
+<p><em>Given a function <span class="math notranslate nohighlight">\(\newcommand{\om}{\varOmega}\)</span> <span class="math notranslate nohighlight">\(f \in L_2(\om)\)</span>, the best approximation to <span class="math notranslate nohighlight">\(f\)</span> from a finite element subspace <span class="math notranslate nohighlight">\(S_h\)</span> of <span class="math notranslate nohighlight">\(L_2(\om)\)</span> is obtained as the unique minimizer <span class="math notranslate nohighlight">\(f_h \in S_h\)</span> satisfying</em></p>
+<div class="math notranslate nohighlight">
+\[
+\| f - f_h \|^2_{L_2(\om)} = \min_{v \in S_h } \| f -v \|^2_{L_2(\om)}.
+\]</div>
+<p>To find this minimizer, we can use ngsolve’s automatic Newton-based minimization facilities as shown in the next bit of code: behind the scenes, it automatically differentiates the quadratic functional <span class="math notranslate nohighlight">\(Q(v) = \| f -v \|^2_{L_2(\om)}\)</span> and uses the Newton iteration on the linearized differential to solve for the minimum.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">MinDistL2</span><span class="p">(</span><span class="n">fespace</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the best approximation of &quot;function&quot; from the &quot;fespace&quot;</span>
+<span class="sd">    where optimality is measured in the L2 norm.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Set up the distance minimization </span>
+    <span class="n">approx</span> <span class="o">=</span> <span class="n">fespace</span><span class="o">.</span><span class="n">TrialFunction</span><span class="p">()</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">BilinearForm</span><span class="p">(</span><span class="n">fespace</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">+=</span> <span class="n">ng</span><span class="o">.</span><span class="n">Variation</span><span class="p">((</span><span class="n">function</span> <span class="o">-</span> <span class="n">approx</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span><span class="p">)</span>
+
+    <span class="c1"># Solve for the minimizer</span>
+    <span class="n">best_approx</span> <span class="o">=</span> <span class="n">GridFunction</span><span class="p">(</span><span class="n">fespace</span><span class="p">)</span>
+    <span class="n">ng</span><span class="o">.</span><span class="n">solvers</span><span class="o">.</span><span class="n">Newton</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">best_approx</span><span class="p">,</span> <span class="n">printing</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">best_approx</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here <code class="docutils literal notranslate"><span class="pre">approx</span></code> is an ngsolve <code class="docutils literal notranslate"><span class="pre">TrialFunction</span></code> that takes the role of <span class="math notranslate nohighlight">\(v\)</span> in the minimization above, <code class="docutils literal notranslate"><span class="pre">function</span></code> is an expression representing the given function <span class="math notranslate nohighlight">\(f\)</span>,  <code class="docutils literal notranslate"><span class="pre">dx</span></code> tells ngsolve to integrate over all elements of the mesh, <code class="docutils literal notranslate"><span class="pre">Variation</span></code> asks ngsolve to compute the linearization automatically, and <code class="docutils literal notranslate"><span class="pre">BilinearForm</span></code> allows for storage and representation of the linearization. We will become much more familiar with some of these objects as the course proceeds. If you think that just calling <code class="docutils literal notranslate"><span class="pre">Newton</span></code> is too opaque, rest assured that we will see other more transparent ways to compute the minimizer later.</p>
+<p>Let us now apply the above function to compute the best approximation to a given function from three finite element spaces.</p>
+<p>This is also a good time to hint at the ease of <em>specifying complex domains through the tools at your disposal now.</em> The renowned OCCT kernel for geometric modeling from the <a class="reference external" href="https://www.opencascade.com/">Open Cascade</a> company is made available in ngsolve via the <code class="docutils literal notranslate"><span class="pre">netgen.occ</span></code> module. Here is an example domain that goes a bit beyond the unit square.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">netgen.occ</span><span class="w"> </span><span class="kn">import</span> <span class="n">WorkPlane</span><span class="p">,</span> <span class="n">Glue</span><span class="p">,</span> <span class="n">OCCGeometry</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">wp</span> <span class="o">=</span> <span class="n">WorkPlane</span><span class="p">()</span>
+
+<span class="c1"># make a polygon of n sides </span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> 
+    <span class="n">wp</span><span class="o">.</span><span class="n">Line</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">Rotate</span><span class="p">(</span><span class="mi">360</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
+<span class="n">face</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">Face</span><span class="p">()</span>
+
+<span class="c1"># make three holes to cut out later</span>
+<span class="n">wp</span><span class="o">.</span><span class="n">MoveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">eye1</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span><span class="o">.</span><span class="n">Face</span><span class="p">()</span>
+<span class="n">wp</span><span class="o">.</span><span class="n">MoveTo</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">eye2</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span><span class="o">.</span><span class="n">Face</span><span class="p">()</span>
+<span class="n">wp</span><span class="o">.</span><span class="n">MoveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span>
+<span class="n">smile</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span><span class="o">.</span><span class="n">Face</span><span class="p">()</span>
+<span class="n">wp</span><span class="o">.</span><span class="n">MoveTo</span><span class="p">(</span><span class="mf">0.45</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># make a subdomain (not to be cut out)</span>
+<span class="n">nose</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">Face</span><span class="p">()</span>
+<span class="n">nose</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;nose&#39;</span>
+<span class="n">nose</span><span class="o">.</span><span class="n">maxh</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="c1"># final structure, using union and set subtraction</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="n">Glue</span><span class="p">([</span><span class="n">nose</span><span class="p">,</span> <span class="n">face</span> <span class="o">-</span> <span class="n">eye1</span> <span class="o">-</span> <span class="n">eye2</span> <span class="o">-</span> <span class="n">smile</span><span class="p">])</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span><span class="n">OCCGeometry</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">GenerateMesh</span><span class="p">(</span><span class="n">maxh</span><span class="o">=</span><span class="mf">0.1</span><span class="p">))</span>
+<span class="c1"># visualize: you can either Draw(mesh) or Draw(domain)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using the names assigned while creating the domain, we can create a piecewise function which takes values of distinct expressions on distinct subdomains. Here is a simple example for this domain, which defines the function <span class="math notranslate nohighlight">\(f\)</span> we want to approximate using finite elements.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mesh</span><span class="o">.</span><span class="n">GetMaterials</span><span class="p">()</span>  <span class="c1"># recall names assigned during domain creation</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;nose&#39;, &#39;default&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">MaterialCF</span><span class="p">({</span><span class="s1">&#39;nose&#39;</span><span class="p">:</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="o">*</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="mf">0.55</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">10</span><span class="p">))},</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">Draw</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">deformation</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "32b1355cfdba48cd9fd997ab79c961bb", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<p>Here is the best approximation to this <span class="math notranslate nohighlight">\(f\)</span> from the DG space of degree one:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wh</span> <span class="o">=</span> <span class="n">MinDistL2</span><span class="p">(</span><span class="n">ng</span><span class="o">.</span><span class="n">L2</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="n">f</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error in best approximation by DG = &#39;</span><span class="p">,</span> <span class="n">ng</span><span class="o">.</span><span class="n">Integrate</span><span class="p">((</span><span class="n">wh</span> <span class="o">-</span> <span class="n">f</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">mesh</span><span class="p">))</span>
+<span class="n">Draw</span><span class="p">(</span><span class="n">wh</span><span class="p">,</span> <span class="n">deformation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="n">euler_angles</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">70</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">70</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error in best approximation by DG =  6.717392133705651e-06
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "562f5842e4d242949bedf73c4fb88feb", "version_major": 2, "version_minor": 0}</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BaseWebGuiScene
+</pre></div>
+</div>
+</div>
+</div>
+<p>What if we use the Lagrange space of the same degree?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vh</span> <span class="o">=</span> <span class="n">MinDistL2</span><span class="p">(</span><span class="n">ng</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">f</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error in best approximation by H1 = &#39;</span><span class="p">,</span> <span class="n">ng</span><span class="o">.</span><span class="n">Integrate</span><span class="p">((</span><span class="n">vh</span> <span class="o">-</span> <span class="n">f</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">mesh</span><span class="p">))</span>
+<span class="c1"># Draw(vh, deformation=True) </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error in best approximation by H1 =  0.0014162711410865595
+</pre></div>
+</div>
+</div>
+</div>
+<p>And how does the CR space of the same degree perform?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uh</span> <span class="o">=</span> <span class="n">MinDistL2</span><span class="p">(</span><span class="n">ng</span><span class="o">.</span><span class="n">FESpace</span><span class="p">(</span><span class="s1">&#39;nonconforming&#39;</span><span class="p">,</span> <span class="n">mesh</span><span class="p">),</span> <span class="n">f</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error in best approximation by CR = &#39;</span><span class="p">,</span> <span class="n">ng</span><span class="o">.</span><span class="n">Integrate</span><span class="p">((</span><span class="n">uh</span> <span class="o">-</span> <span class="n">f</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">mesh</span><span class="p">))</span>
+<span class="c1"># Draw(uh, deformation=True)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error in best approximation by CR =  0.0007872914948498292
+</pre></div>
+</div>
+</div>
+</div>
+<p>Clearly, minimization over smaller subspaces result in larger errors. For this particular <span class="math notranslate nohighlight">\(f\)</span>, the DG space is very well suited for approximation because <span class="math notranslate nohighlight">\(f\)</span> is discontinuous along a curve that is a union of some element interfaces (where DG functions are also allowed to be discontinuous).</p>
+<p><strong>Questions for discussion:</strong></p>
+<ul class="simple">
+<li><p>Is the best approximation mapping <span class="math notranslate nohighlight">\(f \mapsto f_h\)</span> an orthogonal projection?</p></li>
+<li><p>Could we use a linear solver rather than a nonlinear solver to compute this map?</p></li>
+</ul>
+</section>
+<section id="constrained-minimization">
+<h1>Constrained minimization<a class="headerlink" href="#constrained-minimization" title="Link to this heading">#</a></h1>
+<p>Recall how local degrees of freedom were fused together to form the global CR space and that note that edge midpoint continuity is equivalent to the zero mean of the jump of the function across the edge. We thus recognize that the CR space can also be written as the following subspace the linear DG space:</p>
+<div class="math notranslate nohighlight">
+\[
+U_h = \{ w \in W_{h1}: \text{ jump of $w$ across every interior mesh edge has zero mean} \}.
+\]</div>
+<p>The jump of <span class="math notranslate nohighlight">\(w\)</span> is a function on element interfaces, typically denoted by ⟦ <span class="math notranslate nohighlight">\( w \)</span>  ⟧, but here we will denote it simply  by  <span class="math notranslate nohighlight">\(\mathrm{jump}(w)\)</span>. With this notation, the best approximation <span class="math notranslate nohighlight">\(f_h\)</span> to <span class="math notranslate nohighlight">\(f\)</span> from <span class="math notranslate nohighlight">\(U_h\)</span> is also the solution of a constrained optimization problem on <span class="math notranslate nohighlight">\(W_{h1}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\| f - f_h\|_{L_2(\om)}
+&amp; = \min_{u_h \in U_h}  \| f - u_h\|_{L_2(\om)}
+\\
+&amp; = \min_{\overset{\scriptstyle{w_h \in W_{h1}}}{\int_F \mathrm{jump}(w_h)=0 \text{ on facets } F}} \| f - w_h\|_{L_2(\om)}
+\end{aligned}
+\end{split}\]</div>
+<p>Thus, the unconstrained minimization over <span class="math notranslate nohighlight">\(U_h\)</span> is equivalent to a constrained minimization over <span class="math notranslate nohighlight">\(W_{h1}\)</span> with one constraint per edge <span class="math notranslate nohighlight">\(F\)</span>.</p>
+<p>From this perspective, it is natural to ask what happens if we constrain <span class="math notranslate nohighlight">\(\mathrm{jump}(w_h)\)</span> further, e.g., instead of just the zero-order moment, one could require further higher-order moments of the jump to vanish, i.e., what if we generalize <span class="math notranslate nohighlight">\(U_h\)</span> to</p>
+<div class="math notranslate nohighlight">
+\[
+U_{hpk} = \Big\{ w \in W_{hp}: \int_F \mathrm{jump}(w) q =0 \text{ for all } q \in P_k(F) \text{ on all interior edges } F\Big\}.
+\]</div>
+<p>The <span class="math notranslate nohighlight">\(p=1, k=0\)</span> case gives <span class="math notranslate nohighlight">\(U_h\)</span>.</p>
+<p><strong>Questions for discussion:</strong></p>
+<ul class="simple">
+<li><p>How to transform the condition on <span class="math notranslate nohighlight">\(\mathrm{jump}(w)\)</span> to a sum over element boundaries?</p></li>
+<li><p>Is it possible to compute the <span class="math notranslate nohighlight">\(L_2\)</span> best approximation of <span class="math notranslate nohighlight">\(f\)</span> from a generalized CR-like space <span class="math notranslate nohighlight">\(U_{hpk}\)</span>?</p></li>
+</ul>
+<p>Here is a code that does the distance minimization on <span class="math notranslate nohighlight">\(U_{hpk}\)</span> via constrained optimization. We use a Lagrange multiplier in a finite element space on the facets. To implement <span class="math notranslate nohighlight">\(\mathrm{jump}(w)\)</span> on the facets, we use an indirect method that produces the jump while summing over elements and integrating over boundaries of each element. Note that the optimization need not succeed for all combinations of <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(k\)</span>. I leave you to investigate this on your own.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute best approximation from U_hpk</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">3</span>    
+<span class="n">k</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">W</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">L2</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>                  <span class="c1"># Approximation lives here </span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">NormalFacetFESpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Lagrange multiplier lives here</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">specialcf</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">dim</span><span class="p">)</span>
+<span class="n">WL</span> <span class="o">=</span> <span class="n">W</span> <span class="o">*</span> <span class="n">L</span>   <span class="c1"># Cartesian product of two finite element spaces</span>
+
+<span class="n">approx</span><span class="p">,</span> <span class="n">multiplier</span> <span class="o">=</span> <span class="n">WL</span><span class="o">.</span><span class="n">TrialFunction</span><span class="p">()</span>
+<span class="n">distance2</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span> <span class="o">-</span> <span class="n">approx</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> 
+<span class="n">constraint</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">InnerProduct</span><span class="p">(</span><span class="n">multiplier</span><span class="p">,</span> <span class="n">approx</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">BilinearForm</span><span class="p">(</span><span class="n">WL</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">+=</span> <span class="n">ng</span><span class="o">.</span><span class="n">Variation</span><span class="p">(</span><span class="n">distance2</span> <span class="o">*</span> <span class="n">dx</span> <span class="o">+</span> <span class="n">constraint</span> <span class="o">*</span> <span class="n">dx</span><span class="p">(</span><span class="n">element_boundary</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+                  
+<span class="n">best_approx</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">GridFunction</span><span class="p">(</span><span class="n">WL</span><span class="p">)</span> <span class="c1"># beware of nonconvergence/singularity</span>
+<span class="n">ng</span><span class="o">.</span><span class="n">solvers</span><span class="o">.</span><span class="n">Newton</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="n">best_approx</span><span class="p">,</span> <span class="n">printing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">uh2</span> <span class="o">=</span> <span class="n">best_approx</span><span class="o">.</span><span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ng</span><span class="o">.</span><span class="n">Integrate</span><span class="p">((</span><span class="n">uh2</span> <span class="o">-</span> <span class="n">f</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">mesh</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Newton iteration  0
+err =  0.21643588155795607
+Newton iteration  1
+err =  3.925567747942326e-17
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.00024705047161825136
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Draw</span><span class="p">(</span><span class="n">uh2</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">deformation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">euler_angles</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">70</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">70</span><span class="p">],</span> 
+     <span class="n">settings</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Misc&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;subdivision&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="s2">&quot;line_thickness&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;fast_draw&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}});</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "d852e3ac09c7402c87efe2521a566993", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+</section>
+<section id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h1>
+<p>We have seen</p>
+<ul class="simple">
+<li><p>the DG, Lagrange, and Crouzeix-Raviart finite element spaces on 2D domains,</p></li>
+<li><p>how to optimize a nonlinear functional using a built-in Newton solver in ngsolve,</p></li>
+<li><p>how to compute best approximations from spaces by minimizing distance,</p></li>
+<li><p>some OpenCascade geometry modeling constructs,</p></li>
+<li><p>unit outward normal vector on element boundaries,</p></li>
+<li><p>use of a facet finite element space,</p></li>
+<li><p>jump functions through element boundary sums,</p></li>
+<li><p>how to integrate inside an element,</p></li>
+<li><p>how to integrate over element boundaries,</p></li>
+<li><p>product of finite element spaces,</p></li>
+<li><p>constrained optimization by Lagrange multiplier finite elements.</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Best approximation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#constrained-minimization">Constrained minimization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jay Gopalakrishnan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025-2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
