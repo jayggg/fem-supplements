@@ -8,6 +8,7 @@ parts:
   - caption: Notebooks
     numbered: True
     chapters:
-      - file: OneDim.ipynb
-      - file: BestApprox.ipynb
-      - file: Rates.ipynb
+    - file: OneDim.ipynb
+    - file: BestApprox.ipynb
+    - file: Rates.ipynb
+    - file: genindex.md
