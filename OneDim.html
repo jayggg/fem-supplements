@@ -186,6 +186,7 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Elements on 1D domains</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BestApprox.html">2. Best approximations in 2D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Rates.html">3. Convergence rates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
 </ul>
 
     </div>
@@ -368,7 +369,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="elements-on-1d-domains">
 <h1><span class="section-number">1. </span>Elements on 1D domains<a class="headerlink" href="#elements-on-1d-domains" title="Link to this heading">#</a></h1>
-<p>In this activity, we become familiar with a computational object that can represent members of simple finite element spaces on one-dimensional (1D) domains.  The spaces are vector spaces of <em>functions</em> on the spatial domain. We see how distinct finite elements on a mesh are glued together to form such a space. The glued function space is often called a <em>global finite element space</em> to contrast it with the spaces on each individual finite element, referred to as <em>local finite element spaces</em>. This leads to the concept of <em>coupling degrees of freedom</em> and <em>local degrees of freedom</em> of global finite element spaces.</p>
+<p>In this activity, we become familiar with a computational object that can represent members of simple finite element spaces on one-dimensional (1D) domains.  The spaces are vector spaces of <em>functions</em> on the spatial domain. We shall see how distinct finite elements on a mesh are glued together to form such a space. The glued function space is often called a <em>global finite element space</em> to contrast it with the spaces on each individual finite element, referred to as <em>local finite element spaces</em>. This leads to the concept of <em>coupling degrees of freedom</em> and <em>local degrees of freedom</em> of global finite element spaces. This notebooks illustrates these concepts through 1D examples.</p>
 <p>We start by importing the Python objects we use in this notebook.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -386,7 +387,7 @@ document.write(`
 <section id="one-element">
 <h2><span class="section-number">1.1. </span>One element<a class="headerlink" href="#one-element" title="Link to this heading">#</a></h2>
 <p>We create a mesh of the unit interval <span class="math notranslate nohighlight">\([0, 1]\)</span> consisting of a single finite element on the same interval, as follows.</p>
-<div class="cell docutils container">
+<div class="cell docutils container" id="index-0">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mesh1</span> <span class="o">=</span> <span class="n">Make1DMesh</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># one element mesh of [0, 1]</span>
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">mesh1</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
@@ -430,29 +431,31 @@ document.write(`
   v(x) = \sum_i v_i \theta_i(x)
 \]</div>
 <p>for some numbers <span class="math notranslate nohighlight">\(v_i\)</span>. The <code class="docutils literal notranslate"><span class="pre">GridFunction</span></code> object <code class="docutils literal notranslate"><span class="pre">v</span></code> represents this function <span class="math notranslate nohighlight">\(v\)</span> and contains the numbers <span class="math notranslate nohighlight">\(v_i\)</span> in its data attribute <code class="docutils literal notranslate"><span class="pre">v.vec</span></code>. By printing out <code class="docutils literal notranslate"><span class="pre">v.vec</span></code> we thus have complete information on the function, provided we know the shape functions <span class="math notranslate nohighlight">\(\theta_i\)</span>. Similarly, by setting the array <code class="docutils literal notranslate"><span class="pre">v.vec</span></code>, we can represent any function in the finite element space as we wish.</p>
-<p>Not all finite element codes use the same shape functions (even if the space they span is a  classical finite element space). Let us acquaint ourselves with the Lagrange shape functions <span class="math notranslate nohighlight">\(\theta_i(x)\)</span> used by ngsolve. We need a small routine to evaluate the finite element function at many points (say a hundred, as set below) within an element and plot the result.</p>
-<div class="cell docutils container">
+<p id="index-1">Not all finite element codes use the same shape functions (even if the space they span is a  classical finite element space). Let us acquaint ourselves with the Lagrange shape functions <span class="math notranslate nohighlight">\(\theta_i(x)\)</span> used by ngsolve. We need a small routine to evaluate the finite element function at many points (say a hundred, as set below) within an element and plot the result.</p>
+<div class="cell docutils container" id="index-2">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot1D</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">msh</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>  
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">  Utility to plot 1D finite element functions</span>
-<span class="sd">  &quot;&quot;&quot;</span>
-  <span class="n">pts</span> <span class="o">=</span> <span class="p">[</span><span class="n">vtx</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">vtx</span> <span class="ow">in</span> <span class="n">msh</span><span class="o">.</span><span class="n">vertices</span><span class="p">]</span>
-  <span class="n">ev</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span><span class="o">.</span><span class="n">vertices</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">msh</span><span class="o">.</span><span class="n">Elements</span><span class="p">(</span><span class="n">ng</span><span class="o">.</span><span class="n">VOL</span><span class="p">)]</span>
-  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ev</span><span class="p">)):</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">pts</span><span class="p">[</span><span class="n">ev</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">nr</span><span class="p">]</span> 
-    <span class="n">b</span> <span class="o">=</span> <span class="n">pts</span><span class="p">[</span><span class="n">ev</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">nr</span><span class="p">]</span> 
-    <span class="n">aa</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span>
-    <span class="n">bb</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span>
-    <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">aa</span><span class="p">,</span> <span class="n">bb</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-    <span class="n">ws</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span><span class="p">(</span><span class="n">msh</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="n">style</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Utility to plot 1D finite element functions</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pts</span> <span class="o">=</span> <span class="p">[</span><span class="n">vtx</span><span class="o">.</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">vtx</span> <span class="ow">in</span> <span class="n">msh</span><span class="o">.</span><span class="n">vertices</span><span class="p">]</span>
+    <span class="n">ev</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span><span class="o">.</span><span class="n">vertices</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">msh</span><span class="o">.</span><span class="n">Elements</span><span class="p">(</span><span class="n">ng</span><span class="o">.</span><span class="n">VOL</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ev</span><span class="p">)):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">pts</span><span class="p">[</span><span class="n">ev</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">nr</span><span class="p">]</span> 
+        <span class="n">b</span> <span class="o">=</span> <span class="n">pts</span><span class="p">[</span><span class="n">ev</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">nr</span><span class="p">]</span> 
+        <span class="n">aa</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">bb</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">aa</span><span class="p">,</span> <span class="n">bb</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+        <span class="c1"># mesh(coordinate) gives a MeshPoint object</span>
+        <span class="c1"># at which GridFunction w can be evaluated</span>
+        <span class="n">ws</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span><span class="p">(</span><span class="n">msh</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="n">style</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>In three distinct colors, we see the three shape functions of the quadratic Lagrange element used within ngsolve. We discover that the Lagrange shape functions in ngsolve are not exactly the shape functions generated by the degrees of freedom of the principal lattice. But note that (see exercises) the same finite element can admit many distinct unisolvent degrees of freedom.</p>
+<p id="index-4"><span id="index-3"></span>In three distinct colors, we see the three shape functions of the quadratic Lagrange element used within ngsolve. We discover that the Lagrange shape functions in ngsolve are not exactly the shape functions generated by the degrees of freedom of the principal lattice. But note that (see exercises) the same finite element can admit many distinct unisolvent degrees of freedom.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
@@ -463,12 +466,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f5e164d9944d606005cecc0f7faf7ee74ce9b3dde5a7820bae96a1b784fce061.png" src="_images/f5e164d9944d606005cecc0f7faf7ee74ce9b3dde5a7820bae96a1b784fce061.png" />
+<img alt="_images/1b88d82a0a062cfa6b8f203b194dd7793abf5ed27d70e898024bbf14539a0061.png" src="_images/1b88d82a0a062cfa6b8f203b194dd7793abf5ed27d70e898024bbf14539a0061.png" />
 </div>
 </div>
 </section>
 <section id="how-elements-are-glued">
-<h2><span class="section-number">1.2. </span>How elements are glued<a class="headerlink" href="#how-elements-are-glued" title="Link to this heading">#</a></h2>
+<span id="index-5"></span><h2><span class="section-number">1.2. </span>How elements are glued<a class="headerlink" href="#how-elements-are-glued" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mesh2</span> <span class="o">=</span> <span class="n">Make1DMesh</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># two element mesh</span>
@@ -486,8 +489,8 @@ document.write(`
 </div>
 </div>
 <p>On this mesh of two elements, let us start by examining two <em>independent</em> quadratic Lagrange elements, where   functions of one element are <em>not glued</em> to the next element. This is achieved using the <code class="docutils literal notranslate"><span class="pre">Discontinuous</span></code> facility in ngsolve. As expected we now find a space of dimension <span class="math notranslate nohighlight">\(3 + 3 = 6\)</span>. This space is called the <em>discontinuous Galerkin space</em> or the DG space.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
+<div class="cell docutils container" id="index-7">
+<span id="index-6"></span><div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V2</span> <span class="o">=</span> <span class="n">Discontinuous</span><span class="p">(</span><span class="n">H1</span><span class="p">(</span><span class="n">mesh2</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">V2</span><span class="o">.</span><span class="n">ndof</span>
 </pre></div>
@@ -508,10 +511,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a634aa4d46d4f5d8dfe1dbd5deae0f6106c2807079d7fecdc092fe55e2049ed2.png" src="_images/a634aa4d46d4f5d8dfe1dbd5deae0f6106c2807079d7fecdc092fe55e2049ed2.png" />
+<img alt="_images/f21a509bb768b3ee714dd492a5f381f2a784c77cc033fe9c2e3bbf36275f3181.png" src="_images/f21a509bb768b3ee714dd492a5f381f2a784c77cc033fe9c2e3bbf36275f3181.png" />
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell docutils container" id="index-8">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="o">.</span><span class="n">vec</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">v</span><span class="o">.</span><span class="n">vec</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">plot1D</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">mesh2</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;k:&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Fourth discontinuous shape function&#39;</span><span class="p">)</span>
@@ -519,7 +522,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3e0548e66e10477c5e8a8bab26997235d1c1c16754487fb070c9fc1a8907ad6c.png" src="_images/3e0548e66e10477c5e8a8bab26997235d1c1c16754487fb070c9fc1a8907ad6c.png" />
+<img alt="_images/d3a1f8e69c4b9b59c87c34be301313ef8fe6d34402230f99885597cfe4a1a441.png" src="_images/d3a1f8e69c4b9b59c87c34be301313ef8fe6d34402230f99885597cfe4a1a441.png" />
 </div>
 </div>
 <p>If we glue these first and fourth functions together we get a continuous function. The global Lagrange finite element space accomplishes this by coalescing the first and fourth degrees of freedom into one, thereby merging the above two shape functions into one global shape function corresponding to the fused global degree of freedom.  This global Lagrange finite element space can be obtained in ngsolve by simply omitting the adjective <code class="docutils literal notranslate"><span class="pre">Discontinuous</span></code> from the prior space definition.</p>
@@ -549,10 +552,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b5c12547d7ee823b3e2b8eda5abc0d6daa4639d096b53be91d8cf944f4b1a881.png" src="_images/b5c12547d7ee823b3e2b8eda5abc0d6daa4639d096b53be91d8cf944f4b1a881.png" />
+<img alt="_images/2a1983d53454cb9abc4ac9981324d9575e9c6032152cb20087c2c6b46a3d5ff4.png" src="_images/2a1983d53454cb9abc4ac9981324d9575e9c6032152cb20087c2c6b46a3d5ff4.png" />
 </div>
 </div>
-<p>The global finite element space consists of functions of the form</p>
+<p id="index-9">The global finite element space consists of functions of the form</p>
 <div class="math notranslate nohighlight">
 \[
 v(x) = \sum_i v_i \Theta_i(x)
@@ -560,10 +563,10 @@ v(x) = \sum_i v_i \Theta_i(x)
 <p>where <span class="math notranslate nohighlight">\(\Theta_i(x)\)</span> are global shape functions. For the current example, we plotted them above. Note that when <span class="math notranslate nohighlight">\(\Theta_i\)</span> is restricted to a single element, we obtain either the zero function or a local shape function <span class="math notranslate nohighlight">\(\theta_j\)</span> of that element. A set of linear functionals <span class="math notranslate nohighlight">\(G_j\)</span> on the global finite element space having the property <span class="math notranslate nohighlight">\(G_j(\Theta_j) = \delta_{ij}\)</span> are called <em>global degrees of freedom.</em> Here <span class="math notranslate nohighlight">\(\delta_{ij}\)</span> denotes the Kronecker delta (equals 1 if <span class="math notranslate nohighlight">\(i=j\)</span> and 0 otherwise).</p>
 </section>
 <section id="coupling-degrees-of-freedom">
-<h2><span class="section-number">1.3. </span>Coupling degrees of freedom<a class="headerlink" href="#coupling-degrees-of-freedom" title="Link to this heading">#</a></h2>
+<span id="index-11"></span><span id="index-10"></span><h2><span class="section-number">1.3. </span>Coupling degrees of freedom<a class="headerlink" href="#coupling-degrees-of-freedom" title="Link to this heading">#</a></h2>
 <p>When some local degrees of freedom of distinct finite elements are fused together to form a single global degree of freedom, like we saw above, the result is called a <em>coupling degree of freedom</em>. In ngsolve, every global shape function, or equivalently every global degree of freedom, is given a <code class="docutils literal notranslate"><span class="pre">CouplingType</span></code>. When its <code class="docutils literal notranslate"><span class="pre">CouplingType</span></code> is <code class="docutils literal notranslate"><span class="pre">LOCAL_DOF</span></code>, it is <em>not</em> a coupling degree of freedom; all other values of <code class="docutils literal notranslate"><span class="pre">CouplingType</span></code> indicates a coupling degree of freedom.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
+<div class="cell docutils container" id="index-14">
+<span id="index-13"></span><span id="index-12"></span><div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">V</span><span class="o">.</span><span class="n">ndof</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">V</span><span class="o">.</span><span class="n">CouplingType</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
 </pre></div>
@@ -584,7 +587,7 @@ COUPLING_TYPE.LOCAL_DOF
 <section id="approximation">
 <h2><span class="section-number">1.4. </span>Approximation<a class="headerlink" href="#approximation" title="Link to this heading">#</a></h2>
 <p>One method of creating a finite element approximation of some given function <span class="math notranslate nohighlight">\(f(x)\)</span>  is by the finite element interpolant. In ngsolve, another technique of creating approximations is offered as the default. This is in a method called <code class="docutils literal notranslate"><span class="pre">Set</span></code> that all <code class="docutils literal notranslate"><span class="pre">GridFunctions</span></code> have. It implements the <em>Oswald approximation,</em> obtained by first computing the <span class="math notranslate nohighlight">\(L_2\)</span> projection of <span class="math notranslate nohighlight">\(f\)</span> into each local finite element space and then assigning to every coupling degree of freedom the average of the degrees of freedom of the projection that were fused to form that coupling degree of freedom.</p>
-<div class="cell docutils container">
+<div class="cell docutils container" id="index-15">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
 <span class="n">plot1D</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="p">),</span> <span class="n">mesh2</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;:b&#39;</span><span class="p">)</span>
@@ -593,7 +596,7 @@ COUPLING_TYPE.LOCAL_DOF
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c677991c13ee191de95d9cc29ecd49400ab85d467e77da0a1c9344c6a7851943.png" src="_images/c677991c13ee191de95d9cc29ecd49400ab85d467e77da0a1c9344c6a7851943.png" />
+<img alt="_images/10bb6b2be7be06b525616ec51024579a7d2d823932f146b8826c004c4ea2b17d.png" src="_images/10bb6b2be7be06b525616ec51024579a7d2d823932f146b8826c004c4ea2b17d.png" />
 </div>
 </div>
 <p>Clearly the approximation (solid curve) and the original (dotted sine curve) are close, but not identical.</p>
@@ -640,7 +643,7 @@ v|_{[x_i, x_{i+1}]} \text { is linear }\}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cb4ba8b606ead04c9ccb83819eacd0751312dad7ecbb79619ea2bc1c42e1733d.png" src="_images/cb4ba8b606ead04c9ccb83819eacd0751312dad7ecbb79619ea2bc1c42e1733d.png" />
+<img alt="_images/54c92bc2d6ba7e9d2a855aec588e4010547fc817c99d537138842b1be77b5b97.png" src="_images/54c92bc2d6ba7e9d2a855aec588e4010547fc817c99d537138842b1be77b5b97.png" />
 </div>
 </div>
 <p><strong>Question for discussion</strong></p>
@@ -657,7 +660,7 @@ v|_{[x_i, x_{i+1}]} \text { is linear }\}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/86185a85b15519cc59365f1a877d29992f26dab2b57861734fea1ccaf4901733.png" src="_images/86185a85b15519cc59365f1a877d29992f26dab2b57861734fea1ccaf4901733.png" />
+<img alt="_images/ae6dec21bad89067ae4468813ff674505ede7224b0a9375fe59ce2481038c1eb.png" src="_images/ae6dec21bad89067ae4468813ff674505ede7224b0a9375fe59ce2481038c1eb.png" />
 </div>
 </div>
 <p>These functions <span class="math notranslate nohighlight">\(\Theta_i \in V_{h1}\)</span> with the property</p>
@@ -666,16 +669,16 @@ v|_{[x_i, x_{i+1}]} \text { is linear }\}.
 \Theta_i(x_j) = \delta_{ij}
 \]</div>
 <p>at every mesh point <span class="math notranslate nohighlight">\(x_j\)</span> are often called <strong>hat functions</strong> colloquially. Note that although the statement <span class="math notranslate nohighlight">\(\Theta_i(x_j) = \delta_{ij}\)</span> only gives the values of <span class="math notranslate nohighlight">\(\Theta_i\)</span> at the mesh vertices <span class="math notranslate nohighlight">\(x_j\)</span>, that is enough to determine the function <span class="math notranslate nohighlight">\(\Theta_i\)</span> everywhere, since it is linear in between the mesh points.</p>
-<p><strong>Questions for discussion</strong></p>
+<p id="index-16"><strong>Questions for discussion</strong></p>
 <ul class="simple">
 <li><p>Are <span class="math notranslate nohighlight">\(\Theta_i\)</span> linearly independent functions?</p></li>
 <li><p>What type of an object is <code class="docutils literal notranslate"><span class="pre">sin(x)</span></code> in the python code?</p></li>
 <li><p>Can you try other function expressions?</p></li>
 </ul>
-<p>Please review <a class="reference external" href="https://ngsolve.org/docu/latest/i-tutorials/unit-1.2-coefficient/coefficientfunction.html">NGSolve i-Tutorial 1.2</a> to learn more about <code class="docutils literal notranslate"><span class="pre">CoefficientFunction</span></code> objects.</p>
+<p>Please review <a class="reference external" href="https://ngsolve.org/docu/latest/i-tutorials/unit-1.2-coefficient/coefficientfunction.html">NGSolve i-Tutorial 1.2</a> to learn more about <code class="docutils literal notranslate"><span class="pre">CoefficientFunction</span></code> objects and operations on them, including automatic differentiation, compiling for speed, and plotting.</p>
 </section>
 <section id="summary">
-<h2><span class="section-number">1.6. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<span id="index-18"></span><span id="index-17"></span><h2><span class="section-number">1.6. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
 <p>We have seen</p>
 <ul class="simple">
 <li><p>the Lagrange and discontinuous Galerkin (DG) spaces in 1D,</p></li>
