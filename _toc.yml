@@ -11,4 +11,5 @@ parts:
     - file: OneDim.ipynb
     - file: BestApprox.ipynb
     - file: Rates.ipynb
+    - file: VectorElem.ipynb
     - file: genindex.md
