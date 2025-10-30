@@ -181,6 +181,7 @@
 <li class="toctree-l1"><a class="reference internal" href="OneDim.html">1. Elements on 1D domains</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BestApprox.html">2. Best approximations in 2D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Rates.html">3. Convergence rates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VectorElem.html">4. Vector elements in 2D</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Index</a></li>
 </ul>
 
@@ -310,6 +311,7 @@ document.write(`
  | <a href="#G"><strong>G</strong></a>
  | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
@@ -350,9 +352,9 @@ document.write(`
       <li><a href="BestApprox.html#index-2">Crouzeix-Raviart (CR) space</a>
 
       <ul>
-        <li><a href="BestApprox.html#index-21">higher order generalization</a>
+        <li><a href="BestApprox.html#index-24">higher order generalization</a>
 </li>
-        <li><a href="BestApprox.html#index-10">shape functions</a>
+        <li><a href="BestApprox.html#index-11">shape functions</a>
 </li>
       </ul></li>
   </ul></td>
@@ -385,7 +387,7 @@ document.write(`
     differentiation
 
       <ul>
-        <li><a href="BestApprox.html#index-14">automatic linearization (Variation)</a>
+        <li><a href="BestApprox.html#index-16">automatic linearization (Variation)</a>
 </li>
         <li><a href="OneDim.html#index-18">of coefficient functions</a>
 </li>
@@ -423,7 +425,7 @@ document.write(`
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="BestApprox.html#index-7">hat functions</a>, <a href="OneDim.html#index-16">[1]</a>
+      <li><a href="BestApprox.html#index-8">hat functions</a>, <a href="OneDim.html#index-16">[1]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -435,8 +437,25 @@ document.write(`
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="BestApprox.html#index-12">interpolation</a>
+      <li><a href="BestApprox.html#index-13">interpolation</a>
 </li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    jump
+
+      <ul>
+        <li><a href="BestApprox.html#index-23">of a scalar function</a>
+</li>
+        <li><a href="VectorElem.html#index-0">of normal component</a>
+</li>
+        <li><a href="VectorElem.html#index-1">orientation-independent definition</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -447,7 +466,7 @@ document.write(`
     Lagrange multipliers
 
       <ul>
-        <li><a href="BestApprox.html#index-22">constrained optimization</a>
+        <li><a href="BestApprox.html#index-25">constrained optimization</a>
 </li>
       </ul></li>
   </ul></td>
@@ -472,16 +491,16 @@ document.write(`
 </li>
         <li><a href="BestApprox.html#index-5">2D</a>
 </li>
-        <li><a href="BestApprox.html#index-18">occ (Open Cascade)</a>
+        <li><a href="BestApprox.html#index-20">occ (Open Cascade)</a>
 </li>
-        <li><a href="BestApprox.html#index-20">polygons</a>
+        <li><a href="BestApprox.html#index-22">polygons</a>
 </li>
-        <li><a href="BestApprox.html#index-19">subdomains and holes</a>
+        <li><a href="BestApprox.html#index-21">subdomains and holes</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="BestApprox.html#index-13">minimization</a>
+      <li><a href="BestApprox.html#index-15">minimization</a>
 </li>
   </ul></td>
 </tr></table>
@@ -489,14 +508,21 @@ document.write(`
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="BestApprox.html#index-16">Newton solver</a>
+      <li><a href="BestApprox.html#index-18">Newton solver</a>
+</li>
+      <li><a href="BestApprox.html#index-3">nonconforming space</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="BestApprox.html#index-3">nonconforming space</a>
+      <li>
+    norm
+
+      <ul>
+        <li><a href="Rates.html#index-16">first Sobolev norm</a>
 </li>
-      <li><a href="Rates.html#index-16">norm ($L_2$ and $H^1$)</a>
+        <li><a href="BestApprox.html#index-14">Lebesgue norm</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -504,7 +530,11 @@ document.write(`
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="OneDim.html#index-15">Oswald approximation</a>
+
+      <ul>
+        <li><a href="VectorElem.html#index-3">vector elements</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -513,6 +543,15 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Rates.html#index-10">pardiso</a>
 </li>
+      <li>
+    piecewise constant
+
+      <ul>
+        <li><a href="BestApprox.html#index-7">element by element</a>
+</li>
+        <li><a href="VectorElem.html#index-2">subdomain by subdomain</a>
+</li>
+      </ul></li>
       <li>
     plotting
 
@@ -540,6 +579,15 @@ document.write(`
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
+    Raviart-Thomas space
+
+      <ul>
+        <li><a href="VectorElem.html#index-4">HDiv</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
     refinement
 
       <ul>
@@ -558,15 +606,15 @@ document.write(`
       <ul>
         <li><a href="OneDim.html#index-11">1D</a>, <a href="OneDim.html#index-2">[1]</a>
 </li>
-        <li><a href="BestApprox.html#index-11">2D</a>
+        <li><a href="BestApprox.html#index-12">2D</a>
 </li>
-        <li><a href="BestApprox.html#index-9">Crouzeix-Raviart (nonconforming)</a>
+        <li><a href="BestApprox.html#index-10">Crouzeix-Raviart (nonconforming)</a>
 </li>
         <li><a href="OneDim.html#index-5">element</a>
 </li>
         <li><a href="OneDim.html#index-8">global</a>, <a href="OneDim.html#index-9">[1]</a>
 </li>
-        <li><a href="BestApprox.html#index-8">Lagrange</a>
+        <li><a href="BestApprox.html#index-9">Lagrange</a>
 </li>
       </ul></li>
   </ul></td>
@@ -587,7 +635,7 @@ document.write(`
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="BestApprox.html#index-17">trial function</a>, <a href="Rates.html#index-3">[1]</a>
+      <li><a href="BestApprox.html#index-19">trial function</a>, <a href="Rates.html#index-3">[1]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -603,7 +651,7 @@ document.write(`
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="BestApprox.html#index-15">variation</a>
+      <li><a href="BestApprox.html#index-17">variation</a>
 </li>
   </ul></td>
 </tr></table>
