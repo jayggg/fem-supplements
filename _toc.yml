@@ -8,8 +8,8 @@ parts:
   - caption: Notebooks
     numbered: True
     chapters:
-    - file: OneDim.ipynb
-    - file: BestApprox.ipynb
-    - file: Rates.ipynb
-    - file: VectorElem.ipynb
+    - file: notebooks/OneDim.ipynb
+    - file: notebooks/BestApprox.ipynb
+    - file: notebooks/Rates.ipynb
+    - file: notebooks/VectorElem.ipynb
     - file: genindex.md
