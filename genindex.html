@@ -172,7 +172,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="README.html">
-                    Working with Finite Elements
+                    Experiments with Finite Elements
                 </a>
             </li>
         </ul>
@@ -182,6 +182,9 @@
 <li class="toctree-l1"><a class="reference internal" href="notebooks/BestApprox.html">2. Best approximations in 2D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Rates.html">3. Convergence rates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/VectorElem.html">4. Vector elements in 2D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Betti.html">5. Betti numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/RegularityApprox.html">6. Regularity’s role in approximation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Magnetostatics.html">7. Static electromagnetic fields</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Index</a></li>
 </ul>
 
@@ -304,7 +307,8 @@ document.write(`
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#B"><strong>B</strong></a>
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
@@ -326,16 +330,35 @@ document.write(`
  | <a href="#W"><strong>W</strong></a>
  
 </div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/RegularityApprox.html#index-5">angle discontinuity</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/BestApprox.html#index-0">best approximation</a>, <a href="notebooks/Rates.html#index-1">[1]</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/Rates.html#index-0">best approximation error (BAE)</a>
 </li>
+      <li>
+    Betti number
+
+      <ul>
+        <li><a href="notebooks/Betti.html#index-11">connected components</a>
+</li>
+        <li><a href="notebooks/Betti.html#index-9">number of holes</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/Rates.html#index-6">bilinear form</a>
+</li>
+      <li><a href="notebooks/RegularityApprox.html#index-4">branch cut</a>
 </li>
   </ul></td>
 </tr></table>
@@ -343,9 +366,53 @@ document.write(`
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/Betti.html#index-7">coboundaries</a>
+</li>
+      <li><a href="notebooks/Betti.html#index-6">cocycles</a>
+</li>
       <li><a href="notebooks/OneDim.html#index-17">coefficient functions (CoefficientFunction)</a>
 </li>
+      <li><a href="notebooks/Betti.html#index-8">cohomologies</a>
+</li>
+      <li>
+    coil
+
+      <ul>
+        <li><a href="notebooks/Magnetostatics.html#index-10">current from voltage</a>
+</li>
+        <li><a href="notebooks/Magnetostatics.html#index-9">magnetic field from current</a>
+</li>
+      </ul></li>
+      <li>
+    conductivity
+
+      <ul>
+        <li><a href="notebooks/Magnetostatics.html#index-13">in electrostatics</a>
+</li>
+        <li><a href="notebooks/Magnetostatics.html#index-12">of copper</a>
+</li>
+      </ul></li>
+      <li>
+    connected components
+
+      <ul>
+        <li><a href="notebooks/Betti.html#index-11">Betti number</a>
+</li>
+      </ul></li>
       <li><a href="notebooks/Rates.html#index-14">convergence rates</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    ConvertOperator
+
+      <ul>
+        <li><a href="notebooks/Betti.html#index-1">curl matrix</a>
+</li>
+      </ul></li>
+      <li><a href="notebooks/Betti.html#index-3">COO() method (ngsolve)</a>
+</li>
+      <li><a href="notebooks/Betti.html#index-2">coo_matrix (scipy)</a>
 </li>
       <li><a href="notebooks/OneDim.html#index-12">coupling degrees of freedom</a>
 
@@ -353,8 +420,6 @@ document.write(`
         <li><a href="notebooks/BestApprox.html#index-15">of CR space</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/BestApprox.html#index-16">coupling type (CouplingType)</a>
 </li>
       <li><a href="notebooks/BestApprox.html#index-2">Crouzeix-Raviart (CR) space</a>
@@ -365,6 +430,12 @@ document.write(`
         <li><a href="notebooks/BestApprox.html#index-3">P1-nonconforming space</a>
 </li>
         <li><a href="notebooks/BestApprox.html#index-12">shape functions</a>
+</li>
+      </ul></li>
+      <li><a href="notebooks/Betti.html#index-0">curl matrix</a>
+
+      <ul>
+        <li><a href="notebooks/Betti.html#index-1">ConvertOperator</a>
 </li>
       </ul></li>
   </ul></td>
@@ -423,6 +494,8 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/VectorElem.html#index-16">edge element</a>
 </li>
+      <li><a href="notebooks/Magnetostatics.html#index-0">electrostatics</a>
+</li>
       <li>
     element boundary integrals
 
@@ -464,10 +537,12 @@ document.write(`
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="notebooks/Rates.html#index-18">gradient</a>
+      <li><a href="notebooks/Magnetostatics.html#index-8">gauge constraint</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/Rates.html#index-18">gradient</a>
+</li>
       <li><a href="notebooks/OneDim.html#index-1">grid function (GridFunction)</a>
 </li>
   </ul></td>
@@ -486,10 +561,17 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/Rates.html#index-13">integrate</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/BestApprox.html#index-17">interpolation (canonical)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    iron
+
+      <ul>
+        <li><a href="notebooks/Magnetostatics.html#index-2">magnetic permeability</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -515,6 +597,8 @@ document.write(`
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/RegularityApprox.html#index-2">L-shaped domain</a>
+</li>
       <li>
     Lagrange multipliers
 
@@ -522,10 +606,10 @@ document.write(`
         <li><a href="notebooks/BestApprox.html#index-32">constrained optimization</a>
 </li>
       </ul></li>
-      <li><a href="notebooks/BestApprox.html#index-5">Lagrange space (Courant space)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/BestApprox.html#index-5">Lagrange space (Courant space)</a>
+</li>
       <li><a href="notebooks/BestApprox.html#index-31">Lagrangian (on finite elements)</a>
 </li>
       <li><a href="notebooks/Rates.html#index-5">linear form</a>
@@ -538,6 +622,21 @@ document.write(`
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    magnetization
+
+      <ul>
+        <li><a href="notebooks/Magnetostatics.html#index-7">curl as distribution</a>
+</li>
+        <li><a href="notebooks/Magnetostatics.html#index-6">discontinuous</a>
+</li>
+        <li><a href="notebooks/Magnetostatics.html#index-5">of ferromagnet</a>
+</li>
+      </ul></li>
+      <li><a href="notebooks/Magnetostatics.html#index-3">magnetostatic potential</a>
+</li>
+      <li><a href="notebooks/Magnetostatics.html#index-1">magnetostatics</a>
+</li>
       <li>
     meshing
 
@@ -580,8 +679,6 @@ document.write(`
       </ul></li>
       <li><a href="notebooks/BestApprox.html#index-4">nonconforming space</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     norm
 
@@ -593,13 +690,26 @@ document.write(`
         <li><a href="notebooks/BestApprox.html#index-18">Lebesgue norm</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/BestApprox.html#index-34">normal vector facet space (NormalFacetFESpace)</a>
 </li>
+      <li>
+    number of holes
+
+      <ul>
+        <li><a href="notebooks/Betti.html#index-9">Betti number</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/Magnetostatics.html#index-11">Ohm&#39;s law</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/OneDim.html#index-15">Oswald approximation</a>
 
@@ -628,13 +738,17 @@ document.write(`
     plotting
 
       <ul>
-        <li><a href="notebooks/OneDim.html#index-3">1D</a>
+        <li><a href="notebooks/OneDim.html#index-3">1D</a>, <a href="notebooks/RegularityApprox.html#index-0">[1]</a>
+</li>
+        <li><a href="notebooks/RegularityApprox.html#index-1">bar plot</a>
 </li>
         <li><a href="notebooks/BestApprox.html#index-7">Draw (2D)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/RegularityApprox.html#index-3">polar coordinates</a>
+</li>
       <li><a href="notebooks/Rates.html#index-15">pretty table</a>
 </li>
       <li>
@@ -651,6 +765,13 @@ document.write(`
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
+    rank of a matrix
+
+      <ul>
+        <li><a href="notebooks/Betti.html#index-4">scipy.linalg.svdvals</a>
+</li>
+      </ul></li>
+      <li>
     Raviart-Thomas space
 
       <ul>
@@ -665,6 +786,8 @@ document.write(`
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/RegularityApprox.html#index-6">re-entrant corner</a>
+</li>
       <li>
     refinement
 
@@ -678,6 +801,13 @@ document.write(`
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    scipy.linalg.svdvals
+
+      <ul>
+        <li><a href="notebooks/Betti.html#index-4">rank of a matrix</a>
+</li>
+      </ul></li>
       <li>
     shape functions
 
@@ -697,6 +827,8 @@ document.write(`
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/Betti.html#index-5">singular values</a>
+</li>
       <li><a href="notebooks/Rates.html#index-8">sparse matrix solver</a>
 </li>
       <li><a href="notebooks/Rates.html#index-11">sparsecholesky</a>
@@ -712,6 +844,8 @@ document.write(`
         <li><a href="notebooks/VectorElem.html#index-15">Nédélec interpolant</a>
 </li>
       </ul></li>
+      <li><a href="notebooks/Magnetostatics.html#index-4">surface field sources</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -722,6 +856,8 @@ document.write(`
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/Betti.html#index-10">topological invariants</a>
+</li>
       <li><a href="notebooks/BestApprox.html#index-23">trial function</a>, <a href="notebooks/Rates.html#index-3">[1]</a>
 </li>
   </ul></td>
@@ -789,7 +925,7 @@ By Jay Gopalakrishnan
 
   <p class="copyright">
     
-      © Copyright 2025-2026.
+      © Copyright 2025.
       <br/>
     
   </p>

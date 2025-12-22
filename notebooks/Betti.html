@@ -1,0 +1,787 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>5. Betti numbers &#8212; Class activities on finite elements</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"926fefa76247477f93c15faa8c4a05fd": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": "50vh", "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "100%"}}, "1c0edbeef0d74bebb5f679e7144ea0f6": {"model_name": "WebguiModel", "model_module": "webgui_jupyter_widgets", "model_module_version": "0.2.37", "state": {"_dom_classes": [], "_model_module": "webgui_jupyter_widgets", "_model_module_version": "0.2.37", "_model_name": "WebguiModel", "_view_count": null, "_view_module": "webgui_jupyter_widgets", "_view_module_version": "0.2.37", "_view_name": "WebguiView", "layout": "IPY_MODEL_926fefa76247477f93c15faa8c4a05fd", "tabbable": null, "tooltip": null, "value": {"ngsolve_version": "Netgen x.x", "mesh_dim": 3, "mesh_center": [1.0, 1.0000000000000002, 0.0], "mesh_radius": 1.4142135623730951, "order2d": 1, "order3d": 0, "draw_vol": false, "draw_surf": true, "funcdim": 0, "have_normals": true, "show_wireframe": true, "show_mesh": true, "Bezier_points": [], "Bezier_trig_points": ["q6oqPwAAgD8AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAMA/AACAPwAAAAAAAAAAAADAP1VVlT8AAAAAAAAAAAAAwD9VVZU/AAAAAAAAAABVVdU/AACAPwAAAAAAAAAAAAAAQAAAAEAAAAAAAAAAAAAAAEAAAABAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAAAAAAAEAAAABAAAAAAAAAAAA=", "AAAAPwAAgD8AAAAAAAAAAKuqKj8AAIA/AAAAAAAAAAAAAAA/AACAPwAAAAAAAAAAAAAAP1VVlT8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACrqio/AACAPwAAAAAAAAAAq6oqP1VVlT8AAAAAAAAAAKuqKj8AAIA/AAAAAAAAAAAAAMA/AACAPwAAAAAAAAAAAADAP1VVlT8AAAAAAAAAAFVV1T9VVZU/AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAq6oqP1VVlT8AAAAAAAAAAFVV1T8AAIA/AAAAAAAAAAA=", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/VVWVPwAAAAAAAAAAq6oqP1VVlT8AAAAAAAAAAAAAAD8AAIA/AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAq6oqPwAAgD8AAAAAAAAAAAAAwD8AAIA/AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAVVXVP1VVlT8AAAAAAAAAAFVV1T8AAIA/AAAAAAAAAACrqio/VVWVPwAAAAAAAAAAAADAP1VVlT8AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=", "AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/", "AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/", "AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/"], "funcmin": 0, "funcmax": 1, "mesh_regions_2d": 12, "autoscale": true, "colors": [[0.0, 1.0, 0.0, 1.0]], "names": ["default"], "solid_names": [], "edges": ["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAgD8AAABAAAAAAAAAAAAAAABAAAAAQAAAAEAAAAAAAABAQAAAAD8AAIA/AAAAAAAAgECrqio/AACAPwAAAAAAAKBAq6oqP1VVlT8AAAAAAADAQAAAAD9VVZU/AAAAAAAA4EAAAMA/AACAPwAAAAAAAABBAADAP1VVlT8AAAAAAAAQQVVV1T8AAIA/AAAAAAAAIEFVVdU/VVWVPwAAAAAAADBB", "AAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAABAAAAAQAAAAAAAAABAAAAAAAAAAEAAAAAAAABAQKuqKj8AAIA/AAAAAAAAgECrqio/VVWVPwAAAAAAAKBAAAAAP1VVlT8AAAAAAADAQAAAAD8AAIA/AAAAAAAA4EBVVdU/AACAPwAAAAAAAABBAADAPwAAgD8AAAAAAAAQQVVV1T9VVZU/AAAAAAAAIEEAAMA/VVWVPwAAAAAAADBB"], "edge_names": ["", "", "", "", "", "", "", "", "", "", "", ""], "edge_colors": [[0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0]], "solid_face_map": [], "fullscreen": false, "gui_settings": {}, "objects": []}}}}, "version_major": 2, "version_minor": 0}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/Betti';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Regularity’s role in approximation" href="RegularityApprox.html" />
+    <link rel="prev" title="4. Vector elements in 2D" href="VectorElem.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/NGSPDX.png" class="logo__image only-light" alt="Class activities on finite elements - Home"/>
+    <script>document.write(`<img src="../_static/NGSPDX.png" class="logo__image only-dark" alt="Class activities on finite elements - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    Experiments with Finite Elements
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="OneDim.html">1. Elements on 1D domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BestApprox.html">2. Best approximations in 2D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Rates.html">3. Convergence rates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VectorElem.html">4. Vector elements in 2D</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Betti numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RegularityApprox.html">6. Regularity’s role in approximation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Magnetostatics.html">7. Static electromagnetic fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/jayggg/fem-supplements" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/Betti.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Betti numbers</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#range-of-the-curl">5.1. Range of the curl</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#null-space-of-the-curl">5.2. Null space of the curl</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#range-and-null-space-of-the-gradient">5.3. Range and null space of the gradient</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.4. Betti numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-emergence-of-topology">5.5. The emergence of topology</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">5.6. Summary</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="betti-numbers">
+<h1><span class="section-number">5. </span>Betti numbers<a class="headerlink" href="#betti-numbers" title="Link to this heading">#</a></h1>
+<p>The two-dimensional de Rham complex of lowest order finite element spaces is</p>
+<div class="math notranslate nohighlight">
+\[\tag{1}\newcommand{\curl}{\mathrm{curl}}\newcommand{\grad}{\mathrm{grad}}
+0 \longrightarrow 
+V_{h1} \stackrel{\grad}{\longrightarrow} 
+N_{h0} \stackrel{\curl}{\longrightarrow} 
+W_{h0} \longrightarrow 0
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(V_{hp}\)</span>, with <span class="math notranslate nohighlight">\(p=1\)</span>,  is the lowest order Lagrange finite element space defined in a <a class="reference internal" href="BestApprox.html"><span class="std std-doc">prior notebook</span></a>, <span class="math notranslate nohighlight">\(N_{hp}\)</span> with <span class="math notranslate nohighlight">\(p=0\)</span> is the lowest order Nédélec space from <a class="reference internal" href="VectorElem.html"><span class="std std-doc">another prior notebook</span></a>,  and <span class="math notranslate nohighlight">\(W_{hp}\)</span> is the lowest order DG space of piecewise constants (also defined in <a class="reference internal" href="BestApprox.html"><span class="std std-doc">earlier</span></a>).  We know that (1) is a complex, have studied its cohomology, and know that its Betti numbers are topological invariants.</p>
+<p>In this notebook we will see practical manifestations of these theoretical results. In fact, the  results not only hold for the lowest order spaces in (1), but also for general orders, as will be seen  numerically in the experiments below. In order to understand the cohomologies, by definition, we must understand the ranges and null spaces of each operator in the complex. In the two-dimensional (2D) case, this means understanding the ranges and kernels of the gradient and curl operators acting on the finite element spaces. We start with the curl operator.</p>
+<section id="range-of-the-curl">
+<h2><span class="section-number">5.1. </span>Range of the curl<a class="headerlink" href="#range-of-the-curl" title="Link to this heading">#</a></h2>
+<p>Considering a general degree <span class="math notranslate nohighlight">\(p\)</span>, observe that the application of the 2D curl operator (discussed at length <a class="reference internal" href="VectorElem.html"><span class="std std-doc">previously</span></a>) to a function in the Nédélec  space <span class="math notranslate nohighlight">\(N_{hp}\)</span> results in a function with no continuity restrictions across element interfaces in general. Since the application of curl also reduces the polynomial degree within each element, the result is a piecewise polynomial of degree not more than <span class="math notranslate nohighlight">\(p\)</span>, i.e., a function in the DG space  <span class="math notranslate nohighlight">\(W_{hp}\)</span>. Thus, we may view <span class="math notranslate nohighlight">\(\curl\)</span> as an operator from the Nedelec space to the DG space,</p>
+<div class="math notranslate nohighlight">
+\[
+\curl : N_{hp}  \to W_{hp}.
+\]</div>
+<p><em>How much of the DG space is filled with the range of <span class="math notranslate nohighlight">\(\curl\)</span>?</em></p>
+<p>To answer this,  we will need to understand the range of the above map. Since <span class="math notranslate nohighlight">\(\curl\)</span> may act on smooth function spaces or on finite element spaces like  <span class="math notranslate nohighlight">\(N_{hp}\)</span>, it is a good idea to indicate the specific domain we consider.  So we will write
+<span class="math notranslate nohighlight">\(
+\text{`` }\curl: N_{hp}  \text{ ''}
+\)</span>
+to indicate the <span class="math notranslate nohighlight">\(\curl\)</span> when it’s viewed as an operator acting (only) on <span class="math notranslate nohighlight">\(N_{hp}\)</span> functions. We now proceed to compute the dimension of its range, i.e., the number</p>
+<div class="math notranslate nohighlight">
+\[\newcommand{\rank}{\mathop{\mathrm{rank}}}
+\rank(\curl: N_{h, p}).
+\]</div>
+<p>To do so, we will need a representation of the operator <span class="math notranslate nohighlight">\(\curl: N_{hp}\)</span>  as a matrix obtained using the basis functions of <span class="math notranslate nohighlight">\(N_{hp}\)</span> and <span class="math notranslate nohighlight">\(W_{hp}\)</span>.  Of course, we will also need a domain and a mesh.</p>
+<p id="index-0">Let us punch some holes into a square to make the domain a bit more interesting than just a square and proceed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ngsolve</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ng</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ngsolve.webgui</span><span class="w"> </span><span class="kn">import</span> <span class="n">Draw</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">netgen.occ</span><span class="w"> </span><span class="kn">import</span> <span class="n">OCCGeometry</span><span class="p">,</span> <span class="n">WorkPlane</span> <span class="c1">#, Rectangle, Glue</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ngsolve</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridFunction</span><span class="p">,</span> <span class="n">curl</span>
+
+<span class="n">wp</span> <span class="o">=</span> <span class="n">WorkPlane</span><span class="p">()</span>
+<span class="n">sqr</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">Face</span><span class="p">()</span>
+<span class="n">rgthole</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">MoveTo</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">Face</span><span class="p">()</span>                 
+<span class="n">lfthole</span> <span class="o">=</span> <span class="n">wp</span><span class="o">.</span><span class="n">MoveTo</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">Face</span><span class="p">()</span>      
+<span class="n">dom</span> <span class="o">=</span> <span class="n">sqr</span><span class="o">-</span><span class="n">rgthole</span> <span class="o">-</span><span class="n">lfthole</span>
+<span class="n">Draw</span><span class="p">(</span><span class="n">dom</span><span class="p">);</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">Mesh</span><span class="p">(</span><span class="n">OCCGeometry</span><span class="p">(</span><span class="n">dom</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">GenerateMesh</span><span class="p">(</span><span class="n">maxh</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "1c0edbeef0d74bebb5f679e7144ea0f6"}</script></div>
+</div>
+<p>The Nedelec and DG spaces on this mesh for a given degree <span class="math notranslate nohighlight">\(p\)</span> are set as follows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">4</span>  
+<span class="n">N</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">HCurl</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">type1</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">L2</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let us think about how to make a matrix representation of the operator
+<span class="math notranslate nohighlight">\(\newcommand{\curl}{\mathrm{curl}}\newcommand{\grad}{\mathrm{grad}}\curl: N_{h p} \to W_{hp} .\)</span></p>
+<p>One way to obtain this matrix is to take each shape function in <span class="math notranslate nohighlight">\(N_{hp}\)</span>, apply curl, and then expand the result in terms of the shape functions of the DG space. However, since the application of <code class="docutils literal notranslate"><span class="pre">curl</span></code> in NGSolve does not output an object in the DG space, we would need to do an additional step of using the <code class="docutils literal notranslate"><span class="pre">Set</span></code> method of the DG space: if you provide it a function that you know should be contained within the DG space, then the <code class="docutils literal notranslate"><span class="pre">Set</span></code> method interpolates it with zero error, creating the interpolant as a <code class="docutils literal notranslate"><span class="pre">GridFunction</span></code> object. Such objects can be queried for their vector of coefficients of basis expansions, which become entries of the curl matrix. An implementation would look like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">curlmatrix</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the matrix representation of curl: N -&gt; D&quot;&quot;&quot;</span>
+    <span class="n">curlmat</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">shapeN</span> <span class="o">=</span> <span class="n">GridFunction</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">curlD</span> <span class="o">=</span> <span class="n">GridFunction</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">.</span><span class="n">ndof</span><span class="p">):</span>
+        <span class="n">shapeN</span><span class="o">.</span><span class="n">vec</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="n">shapeN</span><span class="o">.</span><span class="n">vec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>   <span class="c1"># i-th shape function </span>
+        <span class="n">curlD</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">curl</span><span class="p">(</span><span class="n">shapeN</span><span class="p">))</span>                 <span class="c1"># interpolation error is 0</span>
+        <span class="n">curlmat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">curlD</span><span class="o">.</span><span class="n">vec</span><span class="p">))</span> 
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">curlmat</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+<p>However, the code above is inefficient. As you know, python loops are slow. Moreover, inside the above loop, the <code class="docutils literal notranslate"><span class="pre">Set</span></code> does a global computation when what was really needed is just a local computation on the support of each shape function. Thankfully, NGSolve provides a <code class="docutils literal notranslate"><span class="pre">ConvertOperator</span></code> which accomplishes the same thing faster. (Go ahead and check that the above <code class="docutils literal notranslate"><span class="pre">curlmatrix</span></code> function gives the same matrix as the few lines below; and check the speed difference too!)</p>
+<div class="cell docutils container" id="index-1">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ngsolve</span><span class="w"> </span><span class="kn">import</span> <span class="n">curl</span> 
+<span class="kn">from</span><span class="w"> </span><span class="nn">ngsolve.comp</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConvertOperator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="kn">import</span> <span class="n">coo_matrix</span>
+
+<span class="c1"># Compute the matrix representation of curl: N -&gt; D</span>
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">N</span><span class="o">.</span><span class="n">TrialFunction</span><span class="p">()</span>
+<span class="n">Crl</span> <span class="o">=</span> <span class="n">ConvertOperator</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">trial_proxy</span><span class="o">=</span><span class="n">curl</span><span class="p">(</span><span class="n">u</span><span class="p">))</span>
+<span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="n">Crl</span><span class="o">.</span><span class="n">COO</span><span class="p">()</span>
+<span class="n">curlmat</span> <span class="o">=</span> <span class="n">coo_matrix</span><span class="p">((</span><span class="n">val</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)))</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we have used</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ConvertOperator(X,</span> <span class="pre">Y,</span> <span class="pre">trial_proxy=M)</span></code> to make the sparse matrix of the map <span class="math notranslate nohighlight">\(M:X \to Y\)</span>, with <span class="math notranslate nohighlight">\(M, X, Y\)</span> set to <span class="math notranslate nohighlight">\(\curl,\)</span> <span class="math notranslate nohighlight">\(N_{hp}\)</span> and <span class="math notranslate nohighlight">\(W_{hp}\)</span>, respectively,</p></li>
+<li><p>converted the resulting <code class="docutils literal notranslate"><span class="pre">ngsolve</span></code> sparse matrix to the standard coordinate sparse format <code class="docutils literal notranslate"><span class="pre">COO</span></code>,</p></li>
+<li><p>and used <code class="docutils literal notranslate"><span class="pre">scipy</span></code>’s <code class="docutils literal notranslate"><span class="pre">coo_matrix</span></code> to pass the matrix to <code class="docutils literal notranslate"><span class="pre">scipy</span></code>.</p></li>
+</ul>
+<p id="index-3"><span id="index-2"></span>Since our example is quite small, we have also converted the sparse matrix to the dense matrix <code class="docutils literal notranslate"><span class="pre">curlmat</span></code> for convenience (but we should not do this for large problems). Now that we have the matrix representation <code class="docutils literal notranslate"><span class="pre">curlmat</span></code> of the linear operator <span class="math notranslate nohighlight">\(\newcommand{\curl}{\mathrm{curl}} \curl: N_{hp}\)</span>, computing its rank can be done by any number of linear algebra techniques.  Here is one way, which proceeds by counting the number of nonzero singular values.</p>
+<div class="cell docutils container" id="index-5">
+<span id="index-4"></span><div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">svdvals</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">svdvals</span><span class="p">(</span><span class="n">curlmat</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rank of curl =&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">s</span><span class="o">&gt;</span><span class="mf">1e-15</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rank of curl = 2400
+</pre></div>
+</div>
+</div>
+</div>
+<p>Of course, the rank should be at most the dimension of the codomain, which is immediately retrieved from the ndof attribute of the finite element space:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D</span><span class="o">.</span><span class="n">ndof</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2400
+</pre></div>
+</div>
+</div>
+</div>
+<p>This equals the same number output in the previous cell. Thus we are computationally led to the interesting discovery,</p>
+<div class="math notranslate nohighlight">
+\[\newcommand{\rank}{\mathop{\mathrm{rank}}} \newcommand{\curl}{\mathrm{curl}}
+\rank(\curl: N_{hp}) = \dim W_{hp}. 
+\]</div>
+<p>i.e., <font color=blue>the 2D operator <span class="math notranslate nohighlight">\(\curl : N_{hp} \to  W_{hp}\)</span> is surjective!</font></p>
+<p>Do feel free to hit the above code with other meshes of your choice. You will end up with the same observation.</p>
+</section>
+<section id="null-space-of-the-curl">
+<h2><span class="section-number">5.2. </span>Null space of the curl<a class="headerlink" href="#null-space-of-the-curl" title="Link to this heading">#</a></h2>
+<p>Having discussed the range of curl, let us now turn to the kernel (or the null space) of the same linear operator <span class="math notranslate nohighlight">\(\newcommand{\curl}{\mathrm{curl}} \curl:  N_{hp} \to W_{hp}\)</span>.   Recalling the rank-nullity theorem from linear algebra, we can immediately compute the dimension of the kernel using the above-computed dimension of the range:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\dim(\ker(\curl:N_{hp})) 
+&amp; = \dim(N_{hp}) - \rank(\curl:N_{hp}) \\
+&amp; = \dim(N_{hp}) - \dim W_{hp} 
+\end{aligned}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dimkercurl</span> <span class="o">=</span> <span class="n">N</span><span class="o">.</span><span class="n">ndof</span> <span class="o">-</span> <span class="n">D</span><span class="o">.</span><span class="n">ndof</span>
+<span class="n">dimkercurl</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2100
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="range-and-null-space-of-the-gradient">
+<h2><span class="section-number">5.3. </span>Range and null space of the gradient<a class="headerlink" href="#range-and-null-space-of-the-gradient" title="Link to this heading">#</a></h2>
+<p>Let us now turn to the dimension of the subspace of gradient fields in <span class="math notranslate nohighlight">\(N_{hp}\)</span>, i.e., the rank of</p>
+<div class="math notranslate nohighlight">
+\[ \newcommand{\curl}{\mathrm{curl}}\newcommand{\grad}{\mathrm{grad}}
+\grad : V_{h, p+1} \to N_{hp}.
+\]</div>
+<p>Of course, since <span class="math notranslate nohighlight">\(\curl \circ \grad = 0\)</span>, the range of the gradient map is contained in the kernel of curl. However, we would like to compute the exact dimension of its range.</p>
+<p>The dimension of  <span class="math notranslate nohighlight">\(\grad V_{h, p+1}\)</span>,  is easy to compute because we know that <em>on a connected domain</em> (such as the domain we are currently working with),  the kernel of <span class="math notranslate nohighlight">\(\grad: V_{h, p+1}\to N_{h, p}\)</span> consists  of the one-dimensional space of constant functions. Hence,</p>
+<div class="math notranslate nohighlight">
+\[
+\ker( \grad : V_{h, p+1} ) = 1
+\]</div>
+<p>so by the rank-nullity theorem,</p>
+<div class="math notranslate nohighlight">
+\[
+\dim \grad (V_{h, p+1}) = \dim V_{h, p+1} - 1.
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">rankgrad</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">ndof</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">rankgrad</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2098
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h2><span class="section-number">5.4. </span>Betti numbers<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>For any cochain complex, recall that the Betti numbers are defined as the dimensions of the cohomology spaces, i.e., the quotient spaces of kernels modulo ranges. In our case, for the complex</p>
+<div class="math notranslate nohighlight">
+\[\tag{2}\newcommand{\curl}{\mathrm{curl}}\newcommand{\grad}{\mathrm{grad}}
+0 \longrightarrow 
+V_{h, p+1} \stackrel{\grad}{\longrightarrow} 
+N_{hp} \stackrel{\curl}{\longrightarrow} 
+W_{hp} \longrightarrow 0
+\]</div>
+<p>viewing <span class="math notranslate nohighlight">\(d^0 = \grad\)</span> and <span class="math notranslate nohighlight">\(d^1 = \curl\)</span>, observe that</p>
+<ul class="simple">
+<li><p>the space of 0-cocycles <span class="math notranslate nohighlight">\(\mathcal{Z}^0 = \ker (\grad: V_{h, p+1})\)</span>,</p></li>
+<li><p>the space of 0-coboundaries <span class="math notranslate nohighlight">\(\mathcal B^0 = \{ 0\}\)</span>,</p></li>
+<li><p>the space of 1-cocycles <span class="math notranslate nohighlight">\(\mathcal Z^1 = \ker (\curl)\)</span>,</p></li>
+<li><p>the space of 1-coboundaries <span class="math notranslate nohighlight">\(\mathcal B^1 = \grad (V_{h, p+1})\)</span>,</p></li>
+</ul>
+<p id="index-8"><span id="index-7"></span><span id="index-6"></span>We have already seen how to compute these ranges and null spaces.  Recall that the <span class="math notranslate nohighlight">\(k\)</span>th Betti number <span class="math notranslate nohighlight">\(b^k\)</span> of the complex is the dimension of the <span class="math notranslate nohighlight">\(k\)</span>th cohomology space <span class="math notranslate nohighlight">\(\mathcal H^k = \mathcal Z^k / \mathcal B^k\)</span>. Thus, in our case,</p>
+<ul class="simple">
+<li><p>0th Betti number <span class="math notranslate nohighlight">\(b^0\)</span> equals <span class="math notranslate nohighlight">\(\dim \ker (\grad: V_{h, p+1})\)</span></p></li>
+<li><p>1st Betti number <span class="math notranslate nohighlight">\(b^1\)</span> equals <span class="math notranslate nohighlight">\(\dim (\ker (\curl)) - \dim (\grad (V_{h, p+1}))\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b0</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">ndof</span> <span class="o">-</span> <span class="n">rankgrad</span>
+<span class="n">b0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b1</span> <span class="o">=</span> <span class="n">dimkercurl</span> <span class="o">-</span> <span class="n">rankgrad</span>
+<span class="n">b1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<p>In calculus, we learned that every curl-free vector field can be written as a gradient of a scalar function, provided the domain has the topological property of being simply connected. However, we punched two holes in our domain, so our domain is not simply connected. Hence we cannot assert that all curl-free functions on our domain are gradients. Those that are not span a space of dimension <span class="math notranslate nohighlight">\(b^1\)</span>, the number we just computed above.</p>
+</section>
+<section id="the-emergence-of-topology">
+<h2><span class="section-number">5.5. </span>The emergence of topology<a class="headerlink" href="#the-emergence-of-topology" title="Link to this heading">#</a></h2>
+<p>From the study of simplicial complexes, we have seen that Betti numbers are topological invariants. In particular,</p>
+<ul class="simple">
+<li><p>the 0th Betti number <span class="math notranslate nohighlight">\(b^0\)</span> equals the number of connected components of the domain, and</p></li>
+<li><p>the 1st Betti number <span class="math notranslate nohighlight">\(b^1\)</span> equals the number of holes in the domain.</p></li>
+</ul>
+<p>Clearly, these match our computational observations above.</p>
+<p id="index-10"><span id="index-9"></span>We have thus seen a practical manifestation of how  fundamental topological invariants are naturally encoded in the finite element spaces of the de Rham complex.</p>
+<p><strong>Questions for discussion:</strong></p>
+<ul>
+<li><p>How would the above computations change if we punched more holes in the domain?</p></li>
+<li><p>What if we changed the mesh size?</p></li>
+<li><p>What if we changed the polynomial degree <span class="math notranslate nohighlight">\(p\)</span>?</p></li>
+<li><p>Above, we have computed</p>
+<div class="math notranslate nohighlight">
+\[\newcommand{\grad}{\mathop{\mathrm{grad}}}
+  b^1 = \dim (\ker(\curl: N_{hp})) - \dim(\grad V_{h, p+1}).
+  \]</div>
+<p>and seen its topological significance. What about the number obtained if you replace
+the Nédélec space <span class="math notranslate nohighlight">\(N_{hp}\)</span> above to the space of vector fields in the Cartesian product
+of Lagrange spaces <span class="math notranslate nohighlight">\(V_{h, p+1} \times V_{h, p+1}\)</span>?  (Hint/suggestion: Use
+<code class="docutils literal notranslate"><span class="pre">ng.VectorH1</span></code> and <code class="docutils literal notranslate"><span class="pre">ng.Grad</span></code>.)</p>
+</li>
+<li><p>The above experiments considered a connected domain. What happens if do not restrict to connected domains? Understanding this, write a python function that takes as input a mesh and outputs  the  Betti numbers <span class="math notranslate nohighlight">\(b^0\)</span>  and <span class="math notranslate nohighlight">\(b^1\)</span>. Display your results from meshes of connected and disconnected domains, with and without holes.</p></li>
+</ul>
+</section>
+<section id="summary">
+<span id="index-11"></span><h2><span class="section-number">5.6. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>We have seen</p>
+<ul class="simple">
+<li><p>matrix representations of the operators in the de Rham complex,</p></li>
+<li><p>use of <code class="docutils literal notranslate"><span class="pre">ConvertOperator</span></code> for efficient change of basis,</p></li>
+<li><p>how to make a scipy sparse matrix from ngsolve’s sparse matrix,</p></li>
+<li><p>computation of ranks and null spaces of operators,</p></li>
+<li><p>how to compute Betti numbers of cohomology spaces</p></li>
+<li><p>the topological invariants of the underlying domain reflected in the Betti numbers, and</p></li>
+<li><p>how topology is encoded in a specific sequence of finite elements.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="VectorElem.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Vector elements in 2D</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="RegularityApprox.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Regularity’s role in approximation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#range-of-the-curl">5.1. Range of the curl</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#null-space-of-the-curl">5.2. Null space of the curl</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#range-and-null-space-of-the-gradient">5.3. Range and null space of the gradient</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">5.4. Betti numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-emergence-of-topology">5.5. The emergence of topology</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">5.6. Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jay Gopalakrishnan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
