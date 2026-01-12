@@ -184,7 +184,8 @@
 <li class="toctree-l1"><a class="reference internal" href="notebooks/VectorElem.html">4. Vector elements in 2D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Betti.html">5. Betti numbers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/RegularityApprox.html">6. Regularity’s role in approximation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/Magnetostatics.html">7. Static electromagnetic fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Confusion.html">7. The confusion problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Magnetostatics.html">8. Static electromagnetic fields</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Index</a></li>
 </ul>
 
@@ -333,6 +334,10 @@ document.write(`
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/Confusion.html#index-9">advection equation</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/RegularityApprox.html#index-5">angle discontinuity</a>
 </li>
   </ul></td>
@@ -341,6 +346,8 @@ document.write(`
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/Magnetostatics.html#index-2">bar magnet</a>
+</li>
       <li><a href="notebooks/BestApprox.html#index-0">best approximation</a>, <a href="notebooks/Rates.html#index-1">[1]</a>
 </li>
       <li><a href="notebooks/Rates.html#index-0">best approximation error (BAE)</a>
@@ -353,11 +360,26 @@ document.write(`
 </li>
         <li><a href="notebooks/Betti.html#index-9">number of holes</a>
 </li>
+        <li><a href="notebooks/Betti.html#index-12">tunnels or handles</a>
+</li>
+        <li><a href="notebooks/Betti.html#index-13">voids or cavities</a>
+</li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/Rates.html#index-6">bilinear form</a>
 </li>
+      <li>
+    boundary layer
+
+      <ul>
+        <li><a href="notebooks/Confusion.html#index-3">exact solution</a>
+</li>
+        <li><a href="notebooks/Confusion.html#index-5">instability</a>
+</li>
+        <li><a href="notebooks/Confusion.html#index-4">plot</a>
+</li>
+      </ul></li>
       <li><a href="notebooks/RegularityApprox.html#index-4">branch cut</a>
 </li>
   </ul></td>
@@ -378,18 +400,18 @@ document.write(`
     coil
 
       <ul>
-        <li><a href="notebooks/Magnetostatics.html#index-10">current from voltage</a>
+        <li><a href="notebooks/Magnetostatics.html#index-13">current from voltage</a>
 </li>
-        <li><a href="notebooks/Magnetostatics.html#index-9">magnetic field from current</a>
+        <li><a href="notebooks/Magnetostatics.html#index-12">magnetic field from current</a>
 </li>
       </ul></li>
       <li>
     conductivity
 
       <ul>
-        <li><a href="notebooks/Magnetostatics.html#index-13">in electrostatics</a>
+        <li><a href="notebooks/Magnetostatics.html#index-16">in electrostatics</a>
 </li>
-        <li><a href="notebooks/Magnetostatics.html#index-12">of copper</a>
+        <li><a href="notebooks/Magnetostatics.html#index-15">of copper</a>
 </li>
       </ul></li>
       <li>
@@ -399,6 +421,8 @@ document.write(`
         <li><a href="notebooks/Betti.html#index-11">Betti number</a>
 </li>
       </ul></li>
+      <li><a href="notebooks/Confusion.html#index-2">convection-diffusion equation</a>
+</li>
       <li><a href="notebooks/Rates.html#index-14">convergence rates</a>
 </li>
   </ul></td>
@@ -438,6 +462,8 @@ document.write(`
         <li><a href="notebooks/Betti.html#index-1">ConvertOperator</a>
 </li>
       </ul></li>
+      <li><a href="notebooks/Magnetostatics.html#index-17">current density</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -463,6 +489,15 @@ document.write(`
 </li>
       </ul></li>
       <li>
+    DG method
+
+      <ul>
+        <li><a href="notebooks/Confusion.html#index-12">the need for</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
     differentiation
 
       <ul>
@@ -471,8 +506,6 @@ document.write(`
         <li><a href="notebooks/OneDim.html#index-18">of coefficient functions</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     Draw
 
@@ -537,7 +570,7 @@ document.write(`
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="notebooks/Magnetostatics.html#index-8">gauge constraint</a>
+      <li><a href="notebooks/Magnetostatics.html#index-10">gauge constraint</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -553,6 +586,15 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/BestApprox.html#index-9">hat functions</a>, <a href="notebooks/OneDim.html#index-16">[1]</a>
 </li>
+      <li>
+    heat flux
+
+      <ul>
+        <li><a href="notebooks/Confusion.html#index-0">conductive (Fourier law)</a>
+</li>
+        <li><a href="notebooks/Confusion.html#index-1">convective</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -569,7 +611,7 @@ document.write(`
     iron
 
       <ul>
-        <li><a href="notebooks/Magnetostatics.html#index-2">magnetic permeability</a>
+        <li><a href="notebooks/Magnetostatics.html#index-4">magnetic permeability</a>
 </li>
       </ul></li>
   </ul></td>
@@ -622,18 +664,20 @@ document.write(`
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/Magnetostatics.html#index-3">magnet</a>
+</li>
       <li>
     magnetization
 
       <ul>
-        <li><a href="notebooks/Magnetostatics.html#index-7">curl as distribution</a>
+        <li><a href="notebooks/Magnetostatics.html#index-9">curl as distribution</a>
 </li>
-        <li><a href="notebooks/Magnetostatics.html#index-6">discontinuous</a>
+        <li><a href="notebooks/Magnetostatics.html#index-8">discontinuous</a>
 </li>
-        <li><a href="notebooks/Magnetostatics.html#index-5">of ferromagnet</a>
+        <li><a href="notebooks/Magnetostatics.html#index-7">of ferromagnet</a>
 </li>
       </ul></li>
-      <li><a href="notebooks/Magnetostatics.html#index-3">magnetostatic potential</a>
+      <li><a href="notebooks/Magnetostatics.html#index-5">magnetostatic potential</a>
 </li>
       <li><a href="notebooks/Magnetostatics.html#index-1">magnetostatics</a>
 </li>
@@ -672,6 +716,8 @@ document.write(`
     Nédélec space
 
       <ul>
+        <li><a href="notebooks/Magnetostatics.html#index-11">for magnetic vector potential</a>
+</li>
         <li><a href="notebooks/VectorElem.html#index-13">global space of Type 1</a>
 </li>
         <li><a href="notebooks/VectorElem.html#index-14">the HCurl class</a>
@@ -679,6 +725,8 @@ document.write(`
       </ul></li>
       <li><a href="notebooks/BestApprox.html#index-4">nonconforming space</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     norm
 
@@ -690,8 +738,6 @@ document.write(`
         <li><a href="notebooks/BestApprox.html#index-18">Lebesgue norm</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/BestApprox.html#index-34">normal vector facet space (NormalFacetFESpace)</a>
 </li>
       <li>
@@ -707,16 +753,18 @@ document.write(`
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="notebooks/Magnetostatics.html#index-11">Ohm&#39;s law</a>
+      <li><a href="notebooks/Magnetostatics.html#index-14">Ohm&#39;s law</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/OneDim.html#index-15">Oswald approximation</a>
 
       <ul>
         <li><a href="notebooks/VectorElem.html#index-9">vector elements</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/Confusion.html#index-6">overshoots</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -833,6 +881,8 @@ document.write(`
 </li>
       <li><a href="notebooks/Rates.html#index-11">sparsecholesky</a>
 </li>
+      <li><a href="notebooks/Confusion.html#index-10">stationary convection</a>
+</li>
       <li><a href="notebooks/Rates.html#index-7">stiffness matrix</a>
 </li>
       <li>
@@ -844,7 +894,7 @@ document.write(`
         <li><a href="notebooks/VectorElem.html#index-15">Nédélec interpolant</a>
 </li>
       </ul></li>
-      <li><a href="notebooks/Magnetostatics.html#index-4">surface field sources</a>
+      <li><a href="notebooks/Magnetostatics.html#index-6">surface field sources</a>
 </li>
   </ul></td>
 </tr></table>
@@ -854,12 +904,19 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/Rates.html#index-4">test function</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/Betti.html#index-10">topological invariants</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/BestApprox.html#index-23">trial function</a>, <a href="notebooks/Rates.html#index-3">[1]</a>
 </li>
+      <li>
+    tunnels or handles
+
+      <ul>
+        <li><a href="notebooks/Betti.html#index-12">Betti number</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -867,6 +924,12 @@ document.write(`
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/Rates.html#index-9">umfpack</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/Confusion.html#index-7">undershoots</a>
+</li>
+      <li><a href="notebooks/Confusion.html#index-8">unstable method</a>
 </li>
   </ul></td>
 </tr></table>
@@ -877,10 +940,23 @@ document.write(`
       <li><a href="notebooks/BestApprox.html#index-21">variation</a>
 </li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    voids or cavities
+
+      <ul>
+        <li><a href="notebooks/Betti.html#index-13">Betti number</a>
+</li>
+      </ul></li>
+  </ul></td>
 </tr></table>
 
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/Confusion.html#index-11">weakly imposed boundary condition</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/VectorElem.html#index-17">Whitney forms</a>
 </li>
