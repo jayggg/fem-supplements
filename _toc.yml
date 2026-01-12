@@ -14,5 +14,6 @@ parts:
     - file: notebooks/VectorElem.ipynb
     - file: notebooks/Betti.ipynb
     - file: notebooks/RegularityApprox.ipynb
+    - file: notebooks/Confusion.ipynb
     - file: notebooks/Magnetostatics.ipynb
     - file: genindex.md
