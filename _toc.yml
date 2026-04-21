@@ -16,4 +16,5 @@ parts:
     - file: notebooks/RegularityApprox.ipynb
     - file: notebooks/Confusion.ipynb
     - file: notebooks/Magnetostatics.ipynb
+    - file: notebooks/TEfields.ipynb
     - file: genindex.md
