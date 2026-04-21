@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -185,7 +185,8 @@
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Betti.html">5. Betti numbers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/RegularityApprox.html">6. Regularity’s role in approximation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Confusion.html">7. The confusion problem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/Magnetostatics.html">8. Static electromagnetic fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Magnetostatics.html">8. Static (3D) electromagnetic fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/TEfields.html">9. Transverse (2D) electric fields in waveguides</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Index</a></li>
 </ul>
 
@@ -346,7 +347,7 @@ document.write(`
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="notebooks/Magnetostatics.html#index-2">bar magnet</a>
+      <li><a href="notebooks/Magnetostatics.html#index-3">bar magnet</a>
 </li>
       <li><a href="notebooks/BestApprox.html#index-0">best approximation</a>, <a href="notebooks/Rates.html#index-1">[1]</a>
 </li>
@@ -400,18 +401,18 @@ document.write(`
     coil
 
       <ul>
-        <li><a href="notebooks/Magnetostatics.html#index-13">current from voltage</a>
+        <li><a href="notebooks/Magnetostatics.html#index-14">current from voltage</a>
 </li>
-        <li><a href="notebooks/Magnetostatics.html#index-12">magnetic field from current</a>
+        <li><a href="notebooks/Magnetostatics.html#index-13">magnetic field from current</a>
 </li>
       </ul></li>
       <li>
     conductivity
 
       <ul>
-        <li><a href="notebooks/Magnetostatics.html#index-16">in electrostatics</a>
+        <li><a href="notebooks/Magnetostatics.html#index-17">in electrostatics</a>
 </li>
-        <li><a href="notebooks/Magnetostatics.html#index-15">of copper</a>
+        <li><a href="notebooks/Magnetostatics.html#index-16">of copper</a>
 </li>
       </ul></li>
       <li>
@@ -462,7 +463,9 @@ document.write(`
         <li><a href="notebooks/Betti.html#index-1">ConvertOperator</a>
 </li>
       </ul></li>
-      <li><a href="notebooks/Magnetostatics.html#index-17">current density</a>
+      <li><a href="notebooks/TEfields.html#index-6">curl operator in 2D</a>, <a href="notebooks/VectorElem.html#index-12">[1]</a>
+</li>
+      <li><a href="notebooks/Magnetostatics.html#index-18">current density</a>
 </li>
   </ul></td>
 </tr></table>
@@ -525,9 +528,9 @@ document.write(`
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="notebooks/VectorElem.html#index-16">edge element</a>
+      <li><a href="notebooks/VectorElem.html#index-17">edge element</a>
 </li>
-      <li><a href="notebooks/Magnetostatics.html#index-0">electrostatics</a>
+      <li><a href="notebooks/Magnetostatics.html#index-1">electrostatics</a>
 </li>
       <li>
     element boundary integrals
@@ -570,7 +573,7 @@ document.write(`
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="notebooks/Magnetostatics.html#index-10">gauge constraint</a>
+      <li><a href="notebooks/Magnetostatics.html#index-11">gauge constraint</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -611,7 +614,7 @@ document.write(`
     iron
 
       <ul>
-        <li><a href="notebooks/Magnetostatics.html#index-4">magnetic permeability</a>
+        <li><a href="notebooks/Magnetostatics.html#index-5">magnetic permeability</a>
 </li>
       </ul></li>
   </ul></td>
@@ -628,7 +631,7 @@ document.write(`
 </li>
         <li><a href="notebooks/VectorElem.html#index-0">of normal component</a>
 </li>
-        <li><a href="notebooks/VectorElem.html#index-12">of tangential component</a>
+        <li><a href="notebooks/VectorElem.html#index-13">of tangential component</a>
 </li>
         <li><a href="notebooks/VectorElem.html#index-1">orientation-independent definition</a>
 </li>
@@ -664,23 +667,29 @@ document.write(`
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="notebooks/Magnetostatics.html#index-3">magnet</a>
+      <li><a href="notebooks/Magnetostatics.html#index-4">magnet</a>
 </li>
       <li>
     magnetization
 
       <ul>
-        <li><a href="notebooks/Magnetostatics.html#index-9">curl as distribution</a>
+        <li><a href="notebooks/Magnetostatics.html#index-10">curl as distribution</a>
 </li>
-        <li><a href="notebooks/Magnetostatics.html#index-8">discontinuous</a>
+        <li><a href="notebooks/Magnetostatics.html#index-9">discontinuous</a>
 </li>
-        <li><a href="notebooks/Magnetostatics.html#index-7">of ferromagnet</a>
+        <li><a href="notebooks/Magnetostatics.html#index-8">of ferromagnet</a>
 </li>
       </ul></li>
-      <li><a href="notebooks/Magnetostatics.html#index-5">magnetostatic potential</a>
+      <li><a href="notebooks/Magnetostatics.html#index-6">magnetostatic potential</a>
 </li>
-      <li><a href="notebooks/Magnetostatics.html#index-1">magnetostatics</a>
+      <li><a href="notebooks/Magnetostatics.html#index-2">magnetostatics</a>
 </li>
+      <li><a href="notebooks/TEfields.html#index-7">Maxwell equations in 2D</a>
+</li>
+      <li><a href="notebooks/Magnetostatics.html#index-0">Maxwell equations in 3D</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     meshing
 
@@ -700,8 +709,6 @@ document.write(`
         <li><a href="notebooks/BestApprox.html#index-26">subdomains in 2D</a>, <a href="notebooks/VectorElem.html#index-7">[1]</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/BestApprox.html#index-19">minimization</a>
 </li>
   </ul></td>
@@ -716,11 +723,11 @@ document.write(`
     Nédélec space
 
       <ul>
-        <li><a href="notebooks/Magnetostatics.html#index-11">for magnetic vector potential</a>
+        <li><a href="notebooks/Magnetostatics.html#index-12">for magnetic vector potential</a>
 </li>
-        <li><a href="notebooks/VectorElem.html#index-13">global space of Type 1</a>
+        <li><a href="notebooks/VectorElem.html#index-14">global space of Type 1</a>
 </li>
-        <li><a href="notebooks/VectorElem.html#index-14">the HCurl class</a>
+        <li><a href="notebooks/VectorElem.html#index-15">the HCurl class</a>
 </li>
       </ul></li>
       <li><a href="notebooks/BestApprox.html#index-4">nonconforming space</a>
@@ -753,16 +760,18 @@ document.write(`
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="notebooks/Magnetostatics.html#index-14">Ohm&#39;s law</a>
+      <li><a href="notebooks/Magnetostatics.html#index-15">Ohm&#39;s law</a>
 </li>
+      <li><a href="notebooks/TEfields.html#index-1">optical fiber</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/OneDim.html#index-15">Oswald approximation</a>
 
       <ul>
         <li><a href="notebooks/VectorElem.html#index-9">vector elements</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/Confusion.html#index-6">overshoots</a>
 </li>
   </ul></td>
@@ -843,6 +852,8 @@ document.write(`
         <li><a href="notebooks/Rates.html#index-12">uniform</a>
 </li>
       </ul></li>
+      <li><a href="notebooks/TEfields.html#index-5">rot operator</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -891,10 +902,10 @@ document.write(`
       <ul>
         <li><a href="notebooks/VectorElem.html#index-11">divergence of RT interpolant</a>
 </li>
-        <li><a href="notebooks/VectorElem.html#index-15">Nédélec interpolant</a>
+        <li><a href="notebooks/VectorElem.html#index-16">Nédélec interpolant</a>
 </li>
       </ul></li>
-      <li><a href="notebooks/Magnetostatics.html#index-6">surface field sources</a>
+      <li><a href="notebooks/Magnetostatics.html#index-7">surface field sources</a>
 </li>
   </ul></td>
 </tr></table>
@@ -902,12 +913,18 @@ document.write(`
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/TEfields.html#index-3">TE (transverse electric) system</a>
+</li>
       <li><a href="notebooks/Rates.html#index-4">test function</a>
 </li>
-      <li><a href="notebooks/Betti.html#index-10">topological invariants</a>
+      <li><a href="notebooks/TEfields.html#index-2">time-harmonic</a>
+</li>
+      <li><a href="notebooks/TEfields.html#index-4">TM (transverse magnetic) system</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/Betti.html#index-10">topological invariants</a>
+</li>
       <li><a href="notebooks/BestApprox.html#index-23">trial function</a>, <a href="notebooks/Rates.html#index-3">[1]</a>
 </li>
       <li>
@@ -954,11 +971,13 @@ document.write(`
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="notebooks/Confusion.html#index-11">weakly imposed boundary condition</a>
+      <li><a href="notebooks/TEfields.html#index-0">waveguide</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="notebooks/VectorElem.html#index-17">Whitney forms</a>
+      <li><a href="notebooks/Confusion.html#index-11">weakly imposed boundary condition</a>
+</li>
+      <li><a href="notebooks/VectorElem.html#index-18">Whitney forms</a>
 </li>
   </ul></td>
 </tr></table>
