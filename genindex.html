@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -185,8 +185,10 @@
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Betti.html">5. Betti numbers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/RegularityApprox.html">6. Regularity’s role in approximation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Confusion.html">7. The confusion problem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/Magnetostatics.html">8. Static (3D) electromagnetic fields</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/TEfields.html">9. Transverse (2D) electric fields in waveguides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/ConservMixed.html">8. Conservation &amp; mixed method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Magnetostatics.html">9. Static electromagnetic fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/TEfields.html">10. Transverse fields in waveguides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/WrongMaxwell.html">11. Encountering wrong solutions</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Index</a></li>
 </ul>
 
@@ -309,7 +311,8 @@ document.write(`
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#A"><strong>A</strong></a>
+ <a href="#Symbols"><strong>Symbols</strong></a>
+ | <a href="#A"><strong>A</strong></a>
  | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
@@ -332,13 +335,23 @@ document.write(`
  | <a href="#W"><strong>W</strong></a>
  
 </div>
+<h2 id="Symbols">Symbols</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/Betti.html#index-1">0)</a>, <a href="notebooks/VectorElem.html#index-18">[1]</a>, <a href="notebooks/WrongMaxwell.html#index-6">[2]</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="notebooks/Confusion.html#index-9">advection equation</a>
+      <li><a href="notebooks/WrongMaxwell.html#index-7">actual</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/Confusion.html#index-9">advection equation</a>
+</li>
       <li><a href="notebooks/RegularityApprox.html#index-5">angle discontinuity</a>
 </li>
   </ul></td>
@@ -357,18 +370,31 @@ document.write(`
     Betti number
 
       <ul>
-        <li><a href="notebooks/Betti.html#index-11">connected components</a>
+        <li><a href="notebooks/Betti.html#index-12">connected components</a>
 </li>
-        <li><a href="notebooks/Betti.html#index-9">number of holes</a>
+        <li><a href="notebooks/Betti.html#index-10">number of holes</a>
 </li>
-        <li><a href="notebooks/Betti.html#index-12">tunnels or handles</a>
+        <li><a href="notebooks/Betti.html#index-13">tunnels or handles</a>
 </li>
-        <li><a href="notebooks/Betti.html#index-13">voids or cavities</a>
+        <li><a href="notebooks/Betti.html#index-14">voids or cavities</a>
 </li>
       </ul></li>
+      <li><a href="notebooks/Rates.html#index-6">bilinear form</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="notebooks/Rates.html#index-6">bilinear form</a>
+      <li>
+    block matrix
+
+      <ul>
+        <li><a href="notebooks/ConservMixed.html#index-19">in mixed systems</a>, <a href="notebooks/ConservMixed.sol.html#index-19">[1]</a>
+</li>
+        <li><a href="notebooks/ConservMixed.html#index-20">in ngsolve</a>, <a href="notebooks/ConservMixed.sol.html#index-20">[1]</a>
+</li>
+        <li><a href="notebooks/ConservMixed.html#index-22">solver</a>, <a href="notebooks/ConservMixed.sol.html#index-22">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="notebooks/ConservMixed.html#index-29">block vector</a>, <a href="notebooks/ConservMixed.sol.html#index-29">[1]</a>
 </li>
       <li>
     boundary layer
@@ -389,55 +415,90 @@ document.write(`
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="notebooks/Betti.html#index-7">coboundaries</a>
+      <li><a href="notebooks/Betti.html#index-8">coboundaries</a>
 </li>
-      <li><a href="notebooks/Betti.html#index-6">cocycles</a>
+      <li><a href="notebooks/Betti.html#index-7">cocycles</a>
 </li>
       <li><a href="notebooks/OneDim.html#index-17">coefficient functions (CoefficientFunction)</a>
 </li>
-      <li><a href="notebooks/Betti.html#index-8">cohomologies</a>
+      <li><a href="notebooks/ConservMixed.html#index-3">coffee grounds</a>, <a href="notebooks/ConservMixed.sol.html#index-3">[1]</a>
+</li>
+      <li><a href="notebooks/Betti.html#index-9">cohomologies</a>
 </li>
       <li>
     coil
 
       <ul>
-        <li><a href="notebooks/Magnetostatics.html#index-14">current from voltage</a>
+        <li><a href="notebooks/Magnetostatics.html#index-15">current from voltage</a>
 </li>
-        <li><a href="notebooks/Magnetostatics.html#index-13">magnetic field from current</a>
+        <li><a href="notebooks/Magnetostatics.html#index-14">magnetic field from current</a>
 </li>
       </ul></li>
       <li>
     conductivity
 
       <ul>
-        <li><a href="notebooks/Magnetostatics.html#index-17">in electrostatics</a>
+        <li><a href="notebooks/Magnetostatics.html#index-18">in electrostatics</a>
 </li>
-        <li><a href="notebooks/Magnetostatics.html#index-16">of copper</a>
+        <li><a href="notebooks/Magnetostatics.html#index-17">of copper</a>
 </li>
       </ul></li>
       <li>
     connected components
 
       <ul>
-        <li><a href="notebooks/Betti.html#index-11">Betti number</a>
+        <li><a href="notebooks/Betti.html#index-12">Betti number</a>
 </li>
       </ul></li>
+      <li>
+    conservation law
+
+      <ul>
+        <li><a href="notebooks/ConservMixed.html#index-9">integral form</a>, <a href="notebooks/ConservMixed.sol.html#index-9">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    conservative flux
+
+      <ul>
+        <li><a href="notebooks/ConservMixed.html#index-7">definition</a>, <a href="notebooks/ConservMixed.sol.html#index-7">[1]</a>
+</li>
+        <li><a href="notebooks/ConservMixed.html#index-6">element-wise conservation</a>, <a href="notebooks/ConservMixed.sol.html#index-6">[1]</a>
+</li>
+        <li><a href="notebooks/ConservMixed.html#index-5">single-valued flux</a>, <a href="notebooks/ConservMixed.sol.html#index-5">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    control volume
+
+      <ul>
+        <li><a href="notebooks/ConservMixed.html#index-8">conservation law</a>, <a href="notebooks/ConservMixed.sol.html#index-8">[1]</a>
+</li>
+        <li><a href="notebooks/ConservMixed.html#index-10">discrete</a>, <a href="notebooks/ConservMixed.sol.html#index-10">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/Confusion.html#index-2">convection-diffusion equation</a>
 </li>
       <li><a href="notebooks/Rates.html#index-14">convergence rates</a>
+
+      <ul>
+        <li><a href="notebooks/WrongMaxwell.html#index-7">apparent</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="notebooks/WrongMaxwell.html#index-8">numerical order of convergence (NOC)</a>
+</li>
+      </ul></li>
       <li>
     ConvertOperator
 
       <ul>
-        <li><a href="notebooks/Betti.html#index-1">curl matrix</a>
+        <li><a href="notebooks/Betti.html#index-2">curl matrix</a>
 </li>
       </ul></li>
-      <li><a href="notebooks/Betti.html#index-3">COO() method (ngsolve)</a>
+      <li><a href="notebooks/Betti.html#index-4">COO() method (ngsolve)</a>
 </li>
-      <li><a href="notebooks/Betti.html#index-2">coo_matrix (scipy)</a>
+      <li><a href="notebooks/Betti.html#index-3">coo_matrix (scipy)</a>
 </li>
       <li><a href="notebooks/OneDim.html#index-12">coupling degrees of freedom</a>
 
@@ -460,12 +521,12 @@ document.write(`
       <li><a href="notebooks/Betti.html#index-0">curl matrix</a>
 
       <ul>
-        <li><a href="notebooks/Betti.html#index-1">ConvertOperator</a>
+        <li><a href="notebooks/Betti.html#index-2">ConvertOperator</a>
 </li>
       </ul></li>
       <li><a href="notebooks/TEfields.html#index-6">curl operator in 2D</a>, <a href="notebooks/VectorElem.html#index-12">[1]</a>
 </li>
-      <li><a href="notebooks/Magnetostatics.html#index-18">current density</a>
+      <li><a href="notebooks/Magnetostatics.html#index-19">current density</a>
 </li>
   </ul></td>
 </tr></table>
@@ -473,6 +534,8 @@ document.write(`
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/ConservMixed.html#index-0">Darcy law</a>, <a href="notebooks/ConservMixed.sol.html#index-0">[1]</a>
+</li>
       <li>
     degrees of freedom
 
@@ -538,11 +601,22 @@ document.write(`
       <ul>
         <li><a href="notebooks/BestApprox.html#index-37">to compute jump</a>
 </li>
+        <li><a href="notebooks/ConservMixed.html#index-33">to compute nonconservative flux jump</a>, <a href="notebooks/ConservMixed.sol.html#index-33">[1]</a>
+</li>
         <li><a href="notebooks/BestApprox.html#index-36">using dx(element_boundary=True)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    energy lost
+
+      <ul>
+        <li><a href="notebooks/ConservMixed.html#index-32">flux jump</a>, <a href="notebooks/ConservMixed.sol.html#index-32">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="notebooks/WrongMaxwell.html#index-7">estimated</a>
+</li>
       <li>
     evaluating
 
@@ -563,18 +637,39 @@ document.write(`
         <li><a href="notebooks/BestApprox.html#index-33">the NormalFacetFESpace class</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/BestApprox.html#index-35">facet shared by two elements</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    flux
+
+      <ul>
+        <li><a href="notebooks/ConservMixed.html#index-31">non-conservative flux</a>, <a href="notebooks/ConservMixed.sol.html#index-31">[1]</a>
+</li>
+      </ul></li>
+      <li>
+    flux jump
+
+      <ul>
+        <li><a href="notebooks/ConservMixed.html#index-32">energy lost</a>, <a href="notebooks/ConservMixed.sol.html#index-32">[1]</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="notebooks/Magnetostatics.html#index-11">gauge constraint</a>
+      <li><a href="notebooks/Magnetostatics.html#index-12">gauge constraint</a>
 </li>
+      <li>
+    glue subdomains
+
+      <ul>
+        <li><a href="notebooks/WrongMaxwell.html#index-2">sum (+) subdomains</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/Rates.html#index-18">gradient</a>
@@ -597,19 +692,36 @@ document.write(`
 </li>
         <li><a href="notebooks/Confusion.html#index-1">convective</a>
 </li>
+        <li><a href="notebooks/ConservMixed.html#index-4">Fourier&#39;s law</a>, <a href="notebooks/ConservMixed.sol.html#index-4">[1]</a>
+</li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/ConservMixed.html#index-14">heated plate</a>, <a href="notebooks/ConservMixed.sol.html#index-14">[1]</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    identity
+
+      <ul>
+        <li><a href="notebooks/ConservMixed.html#index-28">preconditioner</a>, <a href="notebooks/ConservMixed.sol.html#index-28">[1]</a>
+</li>
+        <li><a href="notebooks/ConservMixed.html#index-26">projector</a>, <a href="notebooks/ConservMixed.sol.html#index-26">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="notebooks/ConservMixed.html#index-15">insulator</a>, <a href="notebooks/ConservMixed.sol.html#index-15">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/Rates.html#index-13">integrate</a>
 </li>
       <li><a href="notebooks/BestApprox.html#index-17">interpolation (canonical)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     iron
 
@@ -617,6 +729,8 @@ document.write(`
         <li><a href="notebooks/Magnetostatics.html#index-5">magnetic permeability</a>
 </li>
       </ul></li>
+      <li><a href="notebooks/ConservMixed.html#index-24">iterative solver</a>, <a href="notebooks/ConservMixed.sol.html#index-24">[1]</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -631,6 +745,8 @@ document.write(`
 </li>
         <li><a href="notebooks/VectorElem.html#index-0">of normal component</a>
 </li>
+        <li><a href="notebooks/ConservMixed.html#index-34">of normal flux</a>, <a href="notebooks/ConservMixed.sol.html#index-34">[1]</a>
+</li>
         <li><a href="notebooks/VectorElem.html#index-13">of tangential component</a>
 </li>
         <li><a href="notebooks/VectorElem.html#index-1">orientation-independent definition</a>
@@ -642,6 +758,12 @@ document.write(`
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="notebooks/WrongMaxwell.html#index-1">L-shape</a>
+
+      <ul>
+        <li><a href="notebooks/WrongMaxwell.html#index-5">singular Maxwell solution</a>
+</li>
+      </ul></li>
       <li><a href="notebooks/RegularityApprox.html#index-2">L-shaped domain</a>
 </li>
       <li>
@@ -673,14 +795,14 @@ document.write(`
     magnetization
 
       <ul>
-        <li><a href="notebooks/Magnetostatics.html#index-10">curl as distribution</a>
+        <li><a href="notebooks/Magnetostatics.html#index-11">curl as distribution</a>
 </li>
-        <li><a href="notebooks/Magnetostatics.html#index-9">discontinuous</a>
+        <li><a href="notebooks/Magnetostatics.html#index-10">discontinuous</a>
 </li>
-        <li><a href="notebooks/Magnetostatics.html#index-8">of ferromagnet</a>
+        <li><a href="notebooks/Magnetostatics.html#index-9">of ferromagnet</a>
 </li>
       </ul></li>
-      <li><a href="notebooks/Magnetostatics.html#index-6">magnetostatic potential</a>
+      <li><a href="notebooks/Magnetostatics.html#index-7">magnetostatic potential</a>
 </li>
       <li><a href="notebooks/Magnetostatics.html#index-2">magnetostatics</a>
 </li>
@@ -688,8 +810,6 @@ document.write(`
 </li>
       <li><a href="notebooks/Magnetostatics.html#index-0">Maxwell equations in 3D</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     meshing
 
@@ -698,7 +818,11 @@ document.write(`
 </li>
         <li><a href="notebooks/BestApprox.html#index-6">2D</a>
 </li>
+        <li><a href="notebooks/WrongMaxwell.html#index-3">glue vs sum (+)</a>
+</li>
         <li><a href="notebooks/BestApprox.html#index-27">holes in 2D</a>
+</li>
+        <li><a href="notebooks/WrongMaxwell.html#index-4">maxh for a point</a>
 </li>
         <li><a href="notebooks/BestApprox.html#index-24">occ (Open Cascade)</a>
 </li>
@@ -709,8 +833,23 @@ document.write(`
         <li><a href="notebooks/BestApprox.html#index-26">subdomains in 2D</a>, <a href="notebooks/VectorElem.html#index-7">[1]</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/BestApprox.html#index-19">minimization</a>
 </li>
+      <li><a href="notebooks/ConservMixed.html#index-23">MinRes</a>, <a href="notebooks/ConservMixed.sol.html#index-23">[1]</a>
+</li>
+      <li>
+    mixed method
+
+      <ul>
+        <li><a href="notebooks/ConservMixed.html#index-17">assemble big bilinear form</a>, <a href="notebooks/ConservMixed.sol.html#index-17">[1]</a>
+</li>
+        <li><a href="notebooks/ConservMixed.html#index-18">assemble blocks</a>, <a href="notebooks/ConservMixed.sol.html#index-18">[1]</a>
+</li>
+        <li><a href="notebooks/ConservMixed.html#index-16">Raviart-Thomas</a>, <a href="notebooks/ConservMixed.sol.html#index-16">[1]</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -719,13 +858,16 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/BestApprox.html#index-22">Newton solver</a>
 </li>
-      <li>
-    Nédélec space
+      <li><a href="notebooks/WrongMaxwell.html#index-0">Nédélec space</a>
 
       <ul>
-        <li><a href="notebooks/Magnetostatics.html#index-12">for magnetic vector potential</a>
+        <li><a href="notebooks/Magnetostatics.html#index-13">for magnetic vector potential</a>
+</li>
+        <li><a href="notebooks/TEfields.html#index-8">for TE &amp; TM</a>
 </li>
         <li><a href="notebooks/VectorElem.html#index-14">global space of Type 1</a>
+</li>
+        <li><a href="notebooks/Betti.html#index-1">order=p+1-max(1-p</a>, <a href="notebooks/VectorElem.html#index-18">[1]</a>, <a href="notebooks/WrongMaxwell.html#index-6">[2]</a>
 </li>
         <li><a href="notebooks/VectorElem.html#index-15">the HCurl class</a>
 </li>
@@ -751,7 +893,14 @@ document.write(`
     number of holes
 
       <ul>
-        <li><a href="notebooks/Betti.html#index-9">Betti number</a>
+        <li><a href="notebooks/Betti.html#index-10">Betti number</a>
+</li>
+      </ul></li>
+      <li>
+    numerical order of convergence (NOC)
+
+      <ul>
+        <li><a href="notebooks/WrongMaxwell.html#index-8">convergence rates</a>
 </li>
       </ul></li>
   </ul></td>
@@ -760,7 +909,7 @@ document.write(`
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="notebooks/Magnetostatics.html#index-15">Ohm&#39;s law</a>
+      <li><a href="notebooks/Magnetostatics.html#index-16">Ohm&#39;s law</a>
 </li>
       <li><a href="notebooks/TEfields.html#index-1">optical fiber</a>
 </li>
@@ -783,6 +932,13 @@ document.write(`
       <li><a href="notebooks/Rates.html#index-10">pardiso</a>
 </li>
       <li>
+    permeability
+
+      <ul>
+        <li><a href="notebooks/Magnetostatics.html#index-6">magnetic</a>
+</li>
+      </ul></li>
+      <li>
     piecewise constant
 
       <ul>
@@ -802,10 +958,25 @@ document.write(`
         <li><a href="notebooks/BestApprox.html#index-7">Draw (2D)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/RegularityApprox.html#index-3">polar coordinates</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    porous media
+
+      <ul>
+        <li><a href="notebooks/ConservMixed.html#index-1">flow</a>, <a href="notebooks/ConservMixed.sol.html#index-1">[1]</a>
+</li>
+        <li><a href="notebooks/ConservMixed.html#index-2">permeability</a>, <a href="notebooks/ConservMixed.sol.html#index-2">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="notebooks/ConservMixed.html#index-25">preconditioner</a>, <a href="notebooks/ConservMixed.sol.html#index-25">[1]</a>
+
+      <ul>
+        <li><a href="notebooks/ConservMixed.html#index-30">block preconditioner for mixed systems</a>, <a href="notebooks/ConservMixed.sol.html#index-30">[1]</a>
+</li>
+      </ul></li>
       <li><a href="notebooks/Rates.html#index-15">pretty table</a>
 </li>
       <li>
@@ -813,6 +984,15 @@ document.write(`
 
       <ul>
         <li><a href="notebooks/Rates.html#index-2">L2-orthogonal</a>
+</li>
+      </ul></li>
+      <li>
+    projector
+
+      <ul>
+        <li><a href="notebooks/ConservMixed.html#index-26">identity</a>, <a href="notebooks/ConservMixed.sol.html#index-26">[1]</a>
+</li>
+        <li><a href="notebooks/ConservMixed.html#index-27">mask</a>, <a href="notebooks/ConservMixed.sol.html#index-27">[1]</a>
 </li>
       </ul></li>
   </ul></td>
@@ -825,7 +1005,7 @@ document.write(`
     rank of a matrix
 
       <ul>
-        <li><a href="notebooks/Betti.html#index-4">scipy.linalg.svdvals</a>
+        <li><a href="notebooks/Betti.html#index-5">scipy.linalg.svdvals</a>
 </li>
       </ul></li>
       <li>
@@ -864,7 +1044,7 @@ document.write(`
     scipy.linalg.svdvals
 
       <ul>
-        <li><a href="notebooks/Betti.html#index-4">rank of a matrix</a>
+        <li><a href="notebooks/Betti.html#index-5">rank of a matrix</a>
 </li>
       </ul></li>
       <li>
@@ -884,28 +1064,39 @@ document.write(`
         <li><a href="notebooks/BestApprox.html#index-10">Lagrange</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="notebooks/Betti.html#index-5">singular values</a>
+      <li><a href="notebooks/Betti.html#index-6">singular values</a>
 </li>
       <li><a href="notebooks/Rates.html#index-8">sparse matrix solver</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/Rates.html#index-11">sparsecholesky</a>
 </li>
       <li><a href="notebooks/Confusion.html#index-10">stationary convection</a>
 </li>
       <li><a href="notebooks/Rates.html#index-7">stiffness matrix</a>
 </li>
+      <li><a href="notebooks/ConservMixed.html#index-11">structure preservation</a>, <a href="notebooks/ConservMixed.sol.html#index-11">[1]</a>
+</li>
+      <li>
+    sum (+) subdomains
+
+      <ul>
+        <li><a href="notebooks/WrongMaxwell.html#index-2">glue subdomains</a>
+</li>
+      </ul></li>
       <li>
     superconvergence
 
       <ul>
+        <li><a href="notebooks/ConservMixed.html#index-12">conservation</a>, <a href="notebooks/ConservMixed.sol.html#index-12">[1]</a>
+</li>
         <li><a href="notebooks/VectorElem.html#index-11">divergence of RT interpolant</a>
 </li>
         <li><a href="notebooks/VectorElem.html#index-16">Nédélec interpolant</a>
 </li>
       </ul></li>
-      <li><a href="notebooks/Magnetostatics.html#index-7">surface field sources</a>
+      <li><a href="notebooks/Magnetostatics.html#index-8">surface field sources</a>
 </li>
   </ul></td>
 </tr></table>
@@ -917,21 +1108,30 @@ document.write(`
 </li>
       <li><a href="notebooks/Rates.html#index-4">test function</a>
 </li>
+      <li><a href="notebooks/ConservMixed.html#index-13">thermal conductivity</a>, <a href="notebooks/ConservMixed.sol.html#index-13">[1]</a>
+</li>
       <li><a href="notebooks/TEfields.html#index-2">time-harmonic</a>
 </li>
       <li><a href="notebooks/TEfields.html#index-4">TM (transverse magnetic) system</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="notebooks/Betti.html#index-10">topological invariants</a>
+      <li><a href="notebooks/Betti.html#index-11">topological invariants</a>
 </li>
+      <li>
+    Trace
+
+      <ul>
+        <li><a href="notebooks/ConservMixed.html#index-21">Raviart-Thomas space</a>, <a href="notebooks/ConservMixed.sol.html#index-21">[1]</a>
+</li>
+      </ul></li>
       <li><a href="notebooks/BestApprox.html#index-23">trial function</a>, <a href="notebooks/Rates.html#index-3">[1]</a>
 </li>
       <li>
     tunnels or handles
 
       <ul>
-        <li><a href="notebooks/Betti.html#index-12">Betti number</a>
+        <li><a href="notebooks/Betti.html#index-13">Betti number</a>
 </li>
       </ul></li>
   </ul></td>
@@ -962,7 +1162,7 @@ document.write(`
     voids or cavities
 
       <ul>
-        <li><a href="notebooks/Betti.html#index-13">Betti number</a>
+        <li><a href="notebooks/Betti.html#index-14">Betti number</a>
 </li>
       </ul></li>
   </ul></td>
@@ -977,7 +1177,7 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="notebooks/Confusion.html#index-11">weakly imposed boundary condition</a>
 </li>
-      <li><a href="notebooks/VectorElem.html#index-18">Whitney forms</a>
+      <li><a href="notebooks/VectorElem.html#index-19">Whitney forms</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1020,7 +1220,7 @@ By Jay Gopalakrishnan
 
   <p class="copyright">
     
-      © Copyright 2025.
+      © Copyright 2026.
       <br/>
     
   </p>
