@@ -15,6 +15,8 @@ parts:
     - file: notebooks/Betti.ipynb
     - file: notebooks/RegularityApprox.ipynb
     - file: notebooks/Confusion.ipynb
+    - file: notebooks/ConservMixed.ipynb
     - file: notebooks/Magnetostatics.ipynb
     - file: notebooks/TEfields.ipynb
+    - file: notebooks/WrongMaxwell.ipynb
     - file: genindex.md
